@@ -3,7 +3,7 @@
 [![Downloads](https://img.shields.io/npm/dt/discord-achievements?style=for-the-badge)](https://www.npmjs.com/package/discord-achievements)
 [![Stable Version](https://img.shields.io/npm/v/discord-achievements?style=for-the-badge)](https://www.npmjs.com/package/discord-achievements)
 
-<b>Discord Achievements</b> - Easy and customizable achievements framework for your [Discord Bot](https://discord.js.org/#/).
+<b>Discord Achievements</b> - Manage, track and earn your achievements in [Discord](https://discord.js.org/#/).
 
 ## ❓ | Why?
 <ul>
