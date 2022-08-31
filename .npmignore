@@ -1,0 +1,15 @@
+docs/
+
+.husky/
+scripts/
+
+.babelrc.json
+jsconfig.json
+
+commitlint.config.js
+
+*.bak
+
+achievements.json
+leveling.json
+storage.json

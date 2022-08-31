@@ -1,0 +1,83 @@
+{
+  "name": "discord-achievements",
+  "version": "1.0.0",
+  "description": "Manage, track and earn your achievements in Discord.",
+  "main": "lib/src/index.js",
+  "types": "./types/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "prepare": "npm run babel:install && npm run commitlint:install && husky install",
+    "prep": "node ./scripts/prepare.js",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "postinstall": "npm run prepare",
+    "docgen": "node ./scripts/docgen.js",
+    "babel:install": "npm i @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/preset-env @babel/preset-typescript jsdoc-babel rimraf typescript https://github.com/distubejs/docgen --save-dev",
+    "commitlint:install": "npm i -g @commitlint/cli @commitlint/config-conventiona",
+    "executable": "chmod +x ./.husky/_/husky.sh && chmod +x ./.husky/pre-commit && chmod +x ./.husky/commit-msg",
+    "prepublishOnly": "npm run lint:fix && npm run build && npm run docgen"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "bots",
+    "discord.js",
+    "achievement",
+    "achievements",
+    "achievement-js",
+    "achievements-js",
+    "discord-achievements",
+    "achievement.js",
+    "achievements.js",
+    "discord-achievements.js",
+    "fast",
+    "easy",
+    "flexible",
+    "simple",
+    "discord-js",
+    "discord-bot",
+    "discord-bots",
+    "json",
+    "quick",
+    "mongo",
+    "mongodb",
+    "framework",
+    "module",
+    "shadowplay"
+  ],
+  "author": "shadowplay",
+  "license": "MIT",
+  "dependencies": {
+    "discord-economy-super": "^1.6.4",
+    "discord-leveling-super": "^1.0.13",
+    "discord.js": "^14.2.0",
+    "quick-mongo-super": "^1.0.9"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "directories": {
+    "lib": "./lib",
+    "example": "./examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowplay1/discord-achievements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shadowplay1/discord-achievements/issues"
+  },
+  "homepage": "https://github.com/shadowplay1/discord-achievements#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@distube/docgen": "github:distubejs/docgen",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "husky": "^8.0.1",
+    "jsdoc-babel": "^0.5.0"
+  }
+}

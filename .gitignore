@@ -1,0 +1,15 @@
+.vscode/
+node_modules/
+
+branches/
+scripts/
+
+lib/
+test/
+
+*.bak
+
+achievements.json
+leveling.json
+storage.json
+test.json

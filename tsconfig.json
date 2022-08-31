@@ -1,0 +1,44 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"alwaysStrict": true,
+		"lib": [
+            "es2021", "es6", "dom", "dom.iterable"
+        ],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"target": "ESNext",
+		"outDir": "lib",
+		"rootDir": "./",
+		"types": [
+			"node"
+		],
+		"declaration": true,
+		"declarationDir": "./types",
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"allowSyntheticDefaultImports": true,
+		"strictNullChecks": true,
+		"skipLibCheck": false,
+		"skipDefaultLibCheck": false,
+		"resolveJsonModule": true,
+		"paths": {
+			"discord-achievements": [
+				"./types/index.d.ts"
+			]
+		}
+	},
+	"ts-node": {
+		"transpileOnly": true
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"lib",
+		"scripts"
+	]
+}
