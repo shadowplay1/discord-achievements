@@ -2,7 +2,7 @@
  "meta": {
   "generator": "0.11.1",
   "format": 22,
-  "date": 1661983746424
+  "date": 1661984895392
  },
  "custom": {
   "general": {
@@ -885,10 +885,267 @@
      ]
     ]
    ],
-   "construct": {
-    "name": "Achievement",
-    "description": "Achievement completions manager."
-   },
+   "props": [
+    {
+     "name": "achievements",
+     "description": "Achievements instance.",
+     "type": [
+      [
+       [
+        "Achievements"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 56,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "raw",
+     "description": "Raw achievement object.",
+     "type": [
+      [
+       [
+        "IAchievement",
+        "<"
+       ],
+       [
+        "T",
+        ">"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 62,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "id",
+     "description": "Achievement ID.",
+     "readonly": true,
+     "type": [
+      [
+       [
+        "number"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 68,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "guildID",
+     "description": "Guild ID where the achievement was created.",
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 75,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "name",
+     "description": "Name of the achievement.",
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 81,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "description",
+     "description": "Description of the achievement.",
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 87,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "reward",
+     "description": "Reward for the achievement.",
+     "type": [
+      [
+       [
+        "number"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 93,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "completions",
+     "description": "Achievement completions.",
+     "type": [
+      [
+       [
+        "Array",
+        "<"
+       ],
+       [
+        "ICompletion",
+        ">"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 99,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "completionPercentage",
+     "description": "Percent of guild members completed the achievement.",
+     "type": [
+      [
+       [
+        "number"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 105,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "trackingTarget",
+     "description": "Requirement for the achievement for getting it that would be tracked automatically.",
+     "type": [
+      [
+       [
+        "IAchievementRequirement"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 111,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "icon",
+     "description": "Achievement icon.",
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 117,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "createdAt",
+     "description": "Date when the achievement was created.",
+     "readonly": true,
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 123,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "custom",
+     "description": "Custom data for the achievement.",
+     "type": [
+      [
+       [
+        "CustomAchievementData",
+        "<"
+       ],
+       [
+        "T",
+        ">"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 130,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "progresses",
+     "description": "Achievement progresses manager.",
+     "readonly": true,
+     "type": [
+      [
+       [
+        "Progresses"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 136,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "finishedCompletions",
+     "description": "Achievement completions manager.",
+     "readonly": true,
+     "type": [
+      [
+       [
+        "Completions"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 143,
+      "file": "Achievement.ts",
+      "path": "src/classes"
+     }
+    }
+   ],
    "methods": [
     {
      "name": "grant",
@@ -956,7 +1213,7 @@
       "description": "The granted achievement."
      },
      "meta": {
-      "line": 184,
+      "line": 191,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -993,7 +1250,7 @@
       "description": "Whether the achievement is completed by the user."
      },
      "meta": {
-      "line": 259,
+      "line": 266,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1041,7 +1298,7 @@
       ]
      ],
      "meta": {
-      "line": 273,
+      "line": 280,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1075,7 +1332,7 @@
       ]
      ],
      "meta": {
-      "line": 305,
+      "line": 312,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1122,7 +1379,7 @@
       "description": "Deleted achievement object."
      },
      "meta": {
-      "line": 351,
+      "line": 358,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1179,7 +1436,7 @@
       ]
      ],
      "meta": {
-      "line": 366,
+      "line": 373,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1241,7 +1498,7 @@
       ]
      ],
      "meta": {
-      "line": 527,
+      "line": 534,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1292,6 +1549,23 @@
      ],
      "meta": {
       "line": 30,
+      "file": "AchievementsError.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "stack",
+     "description": "Error stack.",
+     "nullable": true,
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 36,
       "file": "AchievementsError.ts",
       "path": "src/classes"
      }
@@ -2971,7 +3245,7 @@
     }
    ],
    "meta": {
-    "line": 550,
+    "line": 557,
     "file": "Achievement.ts",
     "path": "src/classes"
    }
@@ -3163,6 +3437,44 @@
     "line": 17,
     "file": "ErrorCodes.ts",
     "path": "src/structures"
+   }
+  },
+  {
+   "name": "isObject",
+   "type": [
+    [
+     [
+      "function"
+     ]
+    ]
+   ],
+   "params": [
+    {
+     "name": "item",
+     "description": "The item to check.",
+     "type": [
+      [
+       [
+        "any"
+       ]
+      ]
+     ]
+    }
+   ],
+   "returns": {
+    "types": [
+     [
+      [
+       "boolean"
+      ]
+     ]
+    ],
+    "description": "Whether the specified item is object."
+   },
+   "meta": {
+    "line": 12,
+    "file": "isObject.function.ts",
+    "path": "src/structures/functions"
    }
   },
   {
@@ -3756,7 +4068,7 @@
      "name": "ignoreUnspecifiedOptions",
      "description": "Allows the method to ignore the unspecified options. Default: false.",
      "optional": true,
-     "default": false,
+     "default": true,
      "type": [
       [
        [
@@ -3782,7 +4094,7 @@
      "name": "showProblems",
      "description": "Allows the method to show all the problems in the console. Default: false.",
      "optional": true,
-     "default": false,
+     "default": true,
      "type": [
       [
        [
@@ -3795,7 +4107,7 @@
      "name": "sendLog",
      "description": "Allows the method to send the result in the console.\rRequires the 'showProblems' or 'sendLog' options to set. Default: false.",
      "optional": true,
-     "default": false,
+     "default": true,
      "type": [
       [
        [
