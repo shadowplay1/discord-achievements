@@ -26,118 +26,125 @@ import { Progresses } from './Progresses.achievement'
  * @implements {IAchievement<T>}
  */
 export class Achievement<T extends object = any> implements IAchievement<T> {
-
-    /**
-     * Achievements instance.
-     * @type {Achievements}
-     */
     public achievements: Achievements<any>
 
-    /**
-     * Achievement ID.
-     */
     public readonly id: number
-
-    /**
-     * Raw achievement object.
-     */
-    public raw: IAchievement<T>
-
-    /**
-     * Guild ID where the achievement was created.
-     * @type {string}
-     */
     public guildID: string
 
-    /**
-     * Name of the achievement.
-     * @type {string}
-     */
+    public raw: IAchievement<T>
+
     public name: string
-
-    /**
-     * Description of the achievement.
-     * @type {string}
-     */
     public description: string
-
-    /**
-     * Reward for the achievement.
-     * @type {number}
-     */
     public reward: number
 
-    /**
-     * Achievement completions.
-     * @type {ICompletion[]}
-     */
     public completions: ICompletion[]
-
-    /**
-     * Percent of guild members completed the achievement.
-     * @type {number}
-     */
     public completionPercentage: number
 
-    /**
-     * Achievement icon.
-     * @type {number}
-     */
     public icon?: string
 
-    /**
-     * Requirements for the achievement for getting it that would be tracked automatically.
-     * @type {IAchievementRequirement}
-     */
     public trackingTarget: IAchievementRequirement
-
-    /**
-     * Date when the achievement was created.
-     * @type {string}
-     */
     public readonly createdAt: string
 
-    /**
-     * Custom data for the achievement.
-     * @type {CustomAchievementData<T>}
-     */
     public custom: CustomAchievementData<T>
 
-    /**
-     * Achievement progresses manager.
-     * @type {Progresses}
-     */
-    public progresses: Progresses
-
-    /**
-     * Achievement completions manager.
-     * @type {Completions}
-     */
-    public finishedCompletions: Completions
+    public readonly progresses: Progresses
+    public readonly finishedCompletions: Completions
 
 
     constructor(achievementObject: IAchievement<T>, achievements: Achievements<any>) {
+
+        /**
+         * Achievements instance.
+         * @type {Achievements}
+         */
         this.achievements = achievements
+
+        /**
+         * Raw achievement object.
+         * @type {IAchievement<T>}
+         */
         this.raw = achievementObject
 
+        /**
+         * Achievement ID.
+         * @type {number}
+         * @readonly
+         */
         this.id = achievementObject.id
+
+        /**
+         * Guild ID where the achievement was created.
+         * @type {string}
+         */
         this.guildID = achievementObject.guildID
 
+        /**
+         * Name of the achievement.
+         * @type {string}
+         */
         this.name = achievementObject.name
+
+        /**
+         * Description of the achievement.
+         * @type {string}
+         */
         this.description = achievementObject.description
+
+        /**
+         * Reward for the achievement.
+         * @type {number}
+         */
         this.reward = achievementObject.reward
 
+        /**
+         * Achievement completions.
+         * @type {ICompletion[]}
+         */
         this.completions = achievementObject.completions
+
+        /**
+         * Percent of guild members completed the achievement.
+         * @type {number}
+         */
         this.completionPercentage = achievementObject.completionPercentage
 
+        /**
+         * Requirement for the achievement for getting it that would be tracked automatically.
+         * @type {IAchievementRequirement}
+         */
         this.trackingTarget = achievementObject.trackingTarget || {} as any
 
+        /**
+         * Achievement icon.
+         * @type {string}
+         */
         this.icon = achievementObject.icon || null as any
+
+        /**
+         * Date when the achievement was created.
+         * @type {string}
+         * @readonly
+         */
         this.createdAt = achievementObject.createdAt
 
+        /**
+         * Custom data for the achievement.
+         * @type {CustomAchievementData<T>}
+         */
         this.custom = achievementObject.custom || {} as any
 
+        /**
+         * Achievement progresses manager.
+         * @type {Progresses}
+         * @readonly
+         */
         this.progresses = new Progresses(this)
+
+        /**
+         * Achievement completions manager.
+         * @type {Completions}
+         * @readonly
+         */
         this.finishedCompletions = new Completions(this)
     }
 

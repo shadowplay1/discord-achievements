@@ -32,5 +32,11 @@ export class AchievementsError extends Error {
          * @type {ErrorCodes}
          */
         this.code = code
+
+        /**
+         * Error stack.
+         * @type {?string}
+         */
+        this.stack
     }
 }

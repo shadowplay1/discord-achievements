@@ -1,6 +1,6 @@
 import { ErrorCodes } from '../structures/ErrorCodes';
 /**
- * AchievementsError class.
+ * Achievements error class.
  * @extends {Error}
  */
 export declare class AchievementsError extends Error {

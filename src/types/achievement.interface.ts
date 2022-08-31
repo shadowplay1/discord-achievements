@@ -171,7 +171,7 @@ export interface IAdditionalInfo {
 
 
 /**
- * @typedef {object} IAchievement<T> Achievement object interface.
+ * @typedef {object} IAchievement Achievement object interface.
  *
  * Type parameters:
  *
@@ -224,7 +224,7 @@ export interface IAdditionalInfo {
  */
 
 /**
- * @typedef {object} IProgression<AdditionalInfoProvided> Achievement progression object.
+ * @typedef {object} IProgression Achievement progression object.
  *
  * Type parameters:
  *

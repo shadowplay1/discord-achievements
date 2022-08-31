@@ -1,10 +1,12 @@
 import { GuildMember } from 'discord.js';
-import { DatabaseManager } from '../managers/DatabaseManager';
 import { ICompletion } from '../types/achievement.interface';
 import { Achievement } from './Achievement';
+/**
+ * Achievement completions manager class.
+ */
 export declare class Completions {
     achievement: Achievement;
-    database: DatabaseManager;
+    private database;
     constructor(achievement: Achievement);
     /**
      * Sets the the achievement as completed for the specified user.

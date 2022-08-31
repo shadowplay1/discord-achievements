@@ -1,6 +1,6 @@
 import { IAchievementsEvents } from '../../types/events.interface';
 /**
- * Achievements event emitter.
+ * Achievements event emitter class.
  */
 export declare class Emitter {
     /**

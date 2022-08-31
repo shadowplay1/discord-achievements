@@ -17,6 +17,9 @@ export { isObject } from './structures/functions/isObject.function'
 export { defaultModuleConfig } from './structures/defaultModuleConfig.constant'
 export { errors } from './structures/errors.constant'
 
+export { variables } from './structures/variables.constant'
+export { variables as constants } from './structures/variables.constant'
+
 export { ErrorCodes } from './structures/ErrorCodes'
 
 export { If } from './types/misc/If'

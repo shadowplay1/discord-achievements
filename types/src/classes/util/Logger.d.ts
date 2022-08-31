@@ -1,20 +1,16 @@
 import { ILoggerColors } from '../../types/colors.interface';
 /**
-* Achievements logger.
+* Achievements logger class.
 * @private
 */
 export declare class Logger {
-    options?: {
-        debug?: boolean;
-    };
+    options?: ILoggerOptions;
     colors: ILoggerColors;
     /**
      * Logger constructor.
-     * @param {LoggerOptions} options Logger configuration.
+     * @param {ILoggerOptions} options Logger configuration.
     */
-    constructor(options?: {
-        debug?: boolean;
-    });
+    constructor(options?: ILoggerOptions);
     /**
      * Sends an info message to the console.
      * @param {string} message A message to send.
@@ -40,3 +36,10 @@ export declare class Logger {
      */
     debug(message: string, color?: keyof ILoggerColors): void;
 }
+export interface ILoggerOptions {
+    debug?: boolean;
+}
+/**
+ * @typedef {object} ILoggerOptions
+ * @prop {boolean} [debug] If true, debug mode will be enabled.
+ */

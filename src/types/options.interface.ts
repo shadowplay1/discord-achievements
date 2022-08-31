@@ -119,7 +119,7 @@ export interface IAchievementsPlugins<IsMongoDBUsed extends boolean> {
 
 
 /**
- * @typedef {object} IAchievementsPlugins<IsMongoDBUsed> Achievements plugins object.
+ * @typedef {object} IAchievementsPlugins Achievements plugins object.
  *
  * Type parameters:
  *
@@ -132,11 +132,11 @@ export interface IAchievementsPlugins<IsMongoDBUsed extends boolean> {
 /**
  * @typedef {object} CheckerOptions Configuration for an 'Economy.utils.checkOptions' method.
  * @property {boolean} [ignoreInvalidTypes=false] Allows the method to ignore the options with invalid types. Default: false.
- * @property {boolean} [ignoreUnspecifiedOptions=false] Allows the method to ignore the unspecified options. Default: false.
+ * @property {boolean} [ignoreUnspecifiedOptions=true] Allows the method to ignore the unspecified options. Default: false.
  * @property {boolean} [ignoreInvalidOptions=false] Allows the method to ignore the unexisting options. Default: false.
- * @property {boolean} [showProblems=false] Allows the method to show all the problems in the console. Default: false.
+ * @property {boolean} [showProblems=true] Allows the method to show all the problems in the console. Default: false.
  *
- * @property {boolean} [sendLog=false] Allows the method to send the result in the console.
+ * @property {boolean} [sendLog=true] Allows the method to send the result in the console.
  * Requires the 'showProblems' or 'sendLog' options to set. Default: false.
  *
  * @property {boolean} [sendSuccessLog=false] Allows the method to send the result if no problems were found. Default: false.
@@ -155,7 +155,7 @@ export interface IAchievementsPlugins<IsMongoDBUsed extends boolean> {
  */
 
 /**
- * @typedef {object} IBaseAchievementsOptions<IsMongoDBUsed> Base achievements configuration object.
+ * @typedef {object} IBaseAchievementsOptions Base achievements configuration object.
  *
  * Type parameters:
  *
@@ -168,7 +168,7 @@ export interface IAchievementsPlugins<IsMongoDBUsed extends boolean> {
  */
 
 /**
- * @typedef {object} IAchievementsOptions<IsMongoDBUsed> Achievements configuration object.
+ * @typedef {object} IAchievementsOptions Achievements configuration object.
  *
  * Type parameters:
  *

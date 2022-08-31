@@ -4,23 +4,9 @@ import { IAchievementsOptions, ICheckerOptions } from '../types/options.interfac
  * Utils manager class.
  */
 export declare class UtilsManager {
-    /**
-     * Main Achievements instance.
-     * @type {Achievements}
-     * @private
-     */
-    achievements: Achievements<any>;
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     */
-    options: IAchievementsOptions<any>;
-    /**
-     * Module logger.
-     * @type {Logger}
-     * @private
-     */
+    private achievements;
     private _logger;
+    options: IAchievementsOptions<any>;
     constructor(achievements: Achievements<any>, options: IAchievementsOptions<any>);
     /**
      * Checks the configuration, shows the problems, fixes them and returns a fixed configuration object.

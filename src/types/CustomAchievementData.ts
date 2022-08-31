@@ -2,7 +2,7 @@ export type CustomAchievementData<T extends object = any> = T
 
 
 /**
- * @typedef {T} CustomAchievementData<T> An object that would be stored in `custom` property of the achievement.
+ * @typedef {any} CustomAchievementData An object that would be stored in `custom` property of the achievement.
  *
  * Type parameters:
  *

@@ -10,7 +10,7 @@ export function isObject(item: any): boolean {
 }
 
 /**
- * @function isObject Checks for is the item object and returns it.
+ * @callback isObject Checks for is the item object and returns it.
  * @param {any} item The item to check.
  * @returns {boolean} Whether the specified item is object.
  */

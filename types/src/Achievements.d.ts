@@ -9,64 +9,24 @@ import { IAchievement } from './types/achievement.interface';
 import { Achievement } from './classes/Achievement';
 /**
  * Main Achievements class.
+ *
+ * Type parameters:
+ *
+ * - IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.
+ *
  * @extends {Emitter}
  */
 export declare class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
-    /**
-     * Module version.
-     * @type {string}
-     */
-    version: string;
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     */
-    options: IAchievementsOptions<IsMongoDBUsed>;
-    /**
-     * Module ready state.
-     * @type {boolean}
-     */
     ready: boolean;
-    /**
-     * JSON database file checking interval.
-     */
+    version: string;
+    options: IAchievementsOptions<IsMongoDBUsed>;
     interval?: NodeJS.Timer;
-    /**
-     * Discord Client.
-     * @type {Client}
-     */
     client: Client<boolean>;
-    /**
-     * Database Manager.
-     * @type {IAchievementsPlugins<IsMongoDBUsed>}
-     */
     plugins: IAchievementsPlugins<IsMongoDBUsed>;
-    /**
-     * Database Manager.
-     * @type {DatabaseManager}
-     */
     database: DatabaseManager;
-    /**
-     * Utils Manager.
-     * @type {UtilsManager}
-     */
-    utils?: UtilsManager;
-    /**
-     * MongoDB Connection.
-     * @type {QuickMongo}
-     */
     mongo: QuickMongo;
-    /**
-    * Achievements managers list. Made for optimization purposes.
-    * @type {Array<IManager<IsMongoDBUsed>>}
-    * @private
-    */
+    utils?: UtilsManager;
     private managers;
-    /**
-     * Module logger.
-     * @type {Logger}
-     * @private
-     */
     private _logger;
     /**
      * Achievements constructor.
@@ -77,9 +37,9 @@ export declare class Achievements<IsMongoDBUsed extends boolean> extends Emitter
     /**
      * Initialize the module.
      * @returns {Promise<void>}
-     * @private
+     * @public
      */
-    private init;
+    init(): Promise<void>;
     /**
      * Initializes the managers.
      * @returns {void}
@@ -89,9 +49,8 @@ export declare class Achievements<IsMongoDBUsed extends boolean> extends Emitter
     /**
      * Destroys the module.
      * @returns {void}
-     * @private
      */
-    private kill;
+    kill(): void;
     /**
     * Create a new achievement.
     * @param {string} guild The guild to create the achievement in.

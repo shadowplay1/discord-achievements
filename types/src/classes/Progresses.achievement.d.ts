@@ -1,10 +1,12 @@
 import { GuildMember } from 'discord.js';
-import { DatabaseManager } from '../managers/DatabaseManager';
 import { IProgression } from '../types/achievement.interface';
 import { Achievement } from './Achievement';
+/**
+ * Achievement progressions manager class.
+ */
 export declare class Progresses {
     achievement: Achievement;
-    database: DatabaseManager;
+    private database;
     constructor(achievement: Achievement);
     /**
      * Sets the progress of the achievement for the specified user.

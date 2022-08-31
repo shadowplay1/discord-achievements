@@ -1,21 +1,12 @@
 import { DatabaseProperties } from 'quick-mongo-super/typings/interfaces/QuickMongo';
 import { Achievements } from '../Achievements';
+import { IAchievementsOptions } from '../types/options.interface';
 /**
- * Database Manager class.
+ * Database manager class.
  */
 export declare class DatabaseManager {
-    /**
-     * MongoDB database connection.
-     * @type {QuickMongo}
-     * @private
-     */
+    options: IAchievementsOptions<any>;
     private mongo;
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     * @private
-     */
-    private options;
     /**
      * Database manager.
      * @param {Achievements} achievements Achievements instance.

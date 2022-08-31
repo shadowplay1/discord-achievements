@@ -1,88 +1,36 @@
 import { Guild, GuildMember, TextChannel, User } from 'discord.js';
 import { DatabaseProperties } from 'quick-mongo-super/typings/interfaces/QuickMongo';
 import { Achievements } from '../Achievements';
-import { AchievementType, IAchievement, IAchievementRequirements, ICompletion } from '../types/achievement.interface';
+import { AchievementType, IAchievement, IAchievementRequirement, ICompletion } from '../types/achievement.interface';
 import { CustomAchievementData } from '../types/CustomAchievementData';
 import { IState } from '../types/status.interface';
 import { Completions } from './Completions.achievement';
 import { Progresses } from './Progresses.achievement';
 /**
  * Achievement item class.
+ *
+ * Type parameters:
+ *
+ * - T (object): Optional object that would be stored in `custom` property of the achievement. Default: any.
+ *
+ * @implements {IAchievement<T>}
  */
 export declare class Achievement<T extends object = any> implements IAchievement<T> {
-    /**
-     * Achievements instance.
-     * @type {Achievements}
-     */
     achievements: Achievements<any>;
-    /**
-     * Achievement ID.
-     */
     readonly id: number;
-    /**
-     * Raw achievement object.
-     */
-    raw: IAchievement<T>;
-    /**
-     * Guild ID where the achievement was created.
-     * @type {string}
-     */
     guildID: string;
-    /**
-     * Name of the achievement.
-     * @type {string}
-     */
+    raw: IAchievement<T>;
     name: string;
-    /**
-     * Description of the achievement.
-     * @type {string}
-     */
     description: string;
-    /**
-     * Reward for the achievement.
-     * @type {number}
-     */
     reward: number;
-    /**
-     * Achievement completions.
-     * @type {ICompletion[]}
-     */
     completions: ICompletion[];
-    /**
-     * Percent of guild members completed the achievement.
-     * @type {number}
-     */
     completionPercentage: number;
-    /**
-     * Achievement icon.
-     * @type {number}
-     */
     icon?: string;
-    /**
-     * Requirements for the achievement for getting it that would be tracked automatically.
-     * @type {IAchievementRequirements}
-     */
-    trackingTarget: IAchievementRequirements;
-    /**
-     * Date when the achievement was created.
-     * @type {string}
-     */
+    trackingTarget: IAchievementRequirement;
     readonly createdAt: string;
-    /**
-     * Custom data for the achievement.
-     * @type {CustomAchievementData<T>}
-     */
     custom: CustomAchievementData<T>;
-    /**
-     * Achievement progresses manager.
-     * @type {Progresses}
-     */
-    progresses: Progresses;
-    /**
-     * Achievement completions manager.
-     * @type {Completions}
-     */
-    finishedCompletions: Completions;
+    readonly progresses: Progresses;
+    readonly finishedCompletions: Completions;
     constructor(achievementObject: IAchievement<T>, achievements: Achievements<any>);
     /**
      * Grants the achievement to a user.
@@ -176,3 +124,8 @@ export declare enum CompletionPercentageUpdateType {
     MEMBER_ADD = 0,
     MEMBER_REMOVE = 1
 }
+/**
+ * @typedef {object} CompletionPercentageUpdateType
+ * @prop {number} MEMBER_ADD Member add completion percentage update type.
+ * @prop {number} MEMBER_REMOVE Member remove completion percentage update type.
+ */
