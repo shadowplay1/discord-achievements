@@ -1,18 +1,19 @@
 import { ILoggerColors } from '../../types/colors.interface'
 
+
 /**
-* Achievements logger.
+* Achievements logger class.
 * @private
 */
 export class Logger {
-    public options?: { debug?: boolean }
+    public options?: ILoggerOptions
     public colors: ILoggerColors
 
     /**
      * Logger constructor.
-     * @param {LoggerOptions} options Logger configuration.
+     * @param {ILoggerOptions} options Logger configuration.
     */
-    constructor(options?: { debug?: boolean }) {
+    constructor(options?: ILoggerOptions) {
 
         /**
          * Logger configuration.
@@ -23,7 +24,7 @@ export class Logger {
         /**
          * Logger colors object.
          * @type {LoggerColors}
-        */
+         */
         this.colors = {
             black: '\x1b[30m',
             red: '\x1b[31m',
@@ -86,3 +87,12 @@ export class Logger {
         console.log(`${this.colors[color]}[Achievements] ${message}${this.colors.reset}`)
     }
 }
+
+export interface ILoggerOptions {
+    debug?: boolean
+}
+
+/**
+ * @typedef {object} ILoggerOptions
+ * @prop {boolean} [debug] If true, debug mode will be enabled.
+ */

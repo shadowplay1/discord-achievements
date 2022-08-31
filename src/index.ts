@@ -4,7 +4,7 @@ export { Achievement, CompletionPercentageUpdateType } from './classes/Achieveme
 export { AchievementsError } from './classes/AchievementsError'
 
 export { Emitter } from './classes/util/Emitter'
-export { Logger } from './classes/util/Logger'
+export { Logger, ILoggerOptions } from './classes/util/Logger'
 
 export { Completions } from './classes/Completions.achievement'
 export { Progresses } from './classes/Progresses.achievement'
@@ -27,9 +27,9 @@ export { ILoggerColors } from './types/colors.interface'
 
 export {
     IAchievement, AchievementType,
-    IAchievementRequirements, IBaseProgression,
+    IAchievementRequirement, IBaseProgression,
     ICompletion, ICompletionEvent,
-    IProgression
+    IProgression, IAdditionalInfo
 } from './types/achievement.interface'
 
 export { IAchievementsEvents, AchievementsEvents } from './types/events.interface'

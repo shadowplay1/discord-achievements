@@ -26,75 +26,30 @@ import { MongoConnectionOptions } from 'quick-mongo-super/typings/interfaces/Qui
 
 /**
  * Main Achievements class.
+ *
+ * Type parameters:
+ *
+ * - IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.
+ *
  * @extends {Emitter}
  */
 export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
+    public ready: boolean
 
-    /**
-     * Module version.
-     * @type {string}
-     */
-    public version: string = modulePackage.version
-
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     */
+    public version: string
     public options: IAchievementsOptions<IsMongoDBUsed>
 
-    /**
-     * Module ready state.
-     * @type {boolean}
-     */
-    public ready: boolean = null as any
-
-    /**
-     * JSON database file checking interval.
-     */
-    public interval?: NodeJS.Timer = null as any
-
-    /**
-     * Discord Client.
-     * @type {Client}
-     */
+    public interval?: NodeJS.Timer
     public client: Client<boolean>
 
-    /**
-     * Database Manager.
-     * @type {IAchievementsPlugins<IsMongoDBUsed>}
-     */
-    public plugins: IAchievementsPlugins<IsMongoDBUsed> = {}
+    public plugins: IAchievementsPlugins<IsMongoDBUsed>
 
-    /**
-     * Database Manager.
-     * @type {DatabaseManager}
-     */
     public database: DatabaseManager
-
-    /**
-     * Utils Manager.
-     * @type {UtilsManager}
-     */
-    public utils?: UtilsManager
-
-    /**
-     * MongoDB Connection.
-     * @type {QuickMongo}
-     */
     public mongo: QuickMongo
 
-    /**
-    * Achievements managers list. Made for optimization purposes.
-    * @type {Array<IManager<IsMongoDBUsed>>}
-    * @private
-    */
-    private managers: IManager<IsMongoDBUsed>[] = []
+    public utils?: UtilsManager
 
-    /**
-     * Module logger.
-     * @type {Logger}
-     * @private
-     */
+    private managers: IManager<IsMongoDBUsed>[]
     private _logger: Logger
 
     /**
@@ -105,36 +60,90 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     constructor(client: Client<boolean>, options: IAchievementsOptions<IsMongoDBUsed> = {} as any) {
         super()
 
+        /**
+         * Module ready state.
+         * @type {boolean}
+         */
         this.ready = false
+
+        /**
+         * Module version.
+         * @type {string}
+         */
+        this.version = modulePackage.version
+
+        /**
+         * Discord Client.
+         * @type {Client}
+         */
         this.client = client
 
+        /**
+         * JSON database file checking interval.
+         * @type {NodeJS.Timer}
+         */
+        this.interval = null as any
+
+        /**
+         * Module logger.
+         * @type {Logger}
+         * @private
+         */
         this._logger = new Logger({
             debug: options.debug
         })
+
+        /**
+        * Achievements managers list. Made for optimization purposes.
+        * @type {Array<IManager<IsMongoDBUsed>>}
+        * @private
+        */
+        this.managers = []
 
         if (options.debug) {
             this._logger.debug(`Achievements version: ${this.version}`, 'lightcyan')
         }
 
+        /**
+         * Utils Manager.
+         * @type {UtilsManager}
+         */
         this.utils = new UtilsManager(this, options)
 
+        /**
+         * Module configuration.
+         * @type {IAchievementsOptions}
+         */
         this.options = this.utils.checkOptions(options.optionsChecker, options) as any
+
+        /**
+         * Achievements plugins object.
+         * @type {IAchievementsPlugins<IsMongoDBUsed>}
+         */
         this.plugins = this.options.plugins as IAchievementsPlugins<IsMongoDBUsed>
 
+        /**
+         * Database Manager.
+         * @type {DatabaseManager}
+         */
         this.database = null as any
+
+        /**
+         * MongoDB Connection.
+         * @type {QuickMongo}
+         */
         this.mongo = null as any
 
         this._logger.debug('Achievements starting process launched.')
-
         this.init()
     }
 
     /**
      * Initialize the module.
      * @returns {Promise<void>}
-     * @private
+     * @public
      */
-    private async init(): Promise<void> {
+    public async init(): Promise<void> {
         const options = this.options as any
 
         this._logger.debug('Checking the specified client...')
@@ -427,9 +436,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     /**
      * Destroys the module.
      * @returns {void}
-     * @private
      */
-    private kill(): void {
+    public kill(): void {
         const that: Record<string, any> = this
 
         for (const manager of this.managers) {

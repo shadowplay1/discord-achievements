@@ -5,7 +5,7 @@ import { Achievements } from '../Achievements'
 
 import {
     AchievementType, IAchievement,
-    IAchievementRequirements, ICompletion
+    IAchievementRequirement, ICompletion
 } from '../types/achievement.interface'
 
 import { CustomAchievementData } from '../types/CustomAchievementData'
@@ -18,6 +18,12 @@ import { Progresses } from './Progresses.achievement'
 
 /**
  * Achievement item class.
+ *
+ * Type parameters:
+ *
+ * - T (object): Optional object that would be stored in `custom` property of the achievement. Default: any.
+ *
+ * @implements {IAchievement<T>}
  */
 export class Achievement<T extends object = any> implements IAchievement<T> {
 
@@ -81,9 +87,9 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
 
     /**
      * Requirements for the achievement for getting it that would be tracked automatically.
-     * @type {IAchievementRequirements}
+     * @type {IAchievementRequirement}
      */
-    public trackingTarget: IAchievementRequirements
+    public trackingTarget: IAchievementRequirement
 
     /**
      * Date when the achievement was created.
@@ -540,3 +546,9 @@ export enum CompletionPercentageUpdateType {
     MEMBER_ADD = 0,
     MEMBER_REMOVE = 1
 }
+
+/**
+ * @typedef {object} CompletionPercentageUpdateType
+ * @prop {number} MEMBER_ADD Member add completion percentage update type.
+ * @prop {number} MEMBER_REMOVE Member remove completion percentage update type.
+ */
