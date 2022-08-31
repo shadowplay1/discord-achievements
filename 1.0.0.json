@@ -1,2179 +1,4257 @@
 {
- "meta": {
-  "generator": "0.11.1",
-  "format": 22,
-  "date": 1661874926282
- },
- "custom": {
-  "general": {
-   "name": "General",
-   "files": {
-    "welcome": {
-     "name": "Welcome",
-     "type": "md",
-     "content": "",
-     "path": "docs/general/welcome.md"
+    "meta": {
+        "generator": "0.11.1",
+        "format": 22,
+        "date": 1661982742232
     },
-    "faq": {
-     "name": "FAQ",
-     "type": "md",
-     "content": "",
-     "path": "docs/general/faq.md"
+    "custom": {
+        "general": {
+            "name": "General",
+            "files": {
+                "welcome": {
+                    "name": "Welcome",
+                    "type": "md",
+                    "content": "",
+                    "path": "branches/docs/general/welcome.md"
+                },
+                "faq": {
+                    "name": "FAQ",
+                    "type": "md",
+                    "content": "",
+                    "path": "branches/docs/general/faq.md"
+                },
+                "examples": {
+                    "name": "Examples",
+                    "type": "md",
+                    "content": "",
+                    "path": "branches/docs/general/examples.md"
+                },
+                "changelog": {
+                    "name": "Changelog",
+                    "type": "md",
+                    "content": "",
+                    "path": "branches/docs/general/changelog.md"
+                }
+            }
+        }
     },
-    "examples": {
-     "name": "Examples",
-     "type": "md",
-     "content": "",
-     "path": "docs/general/examples.md"
-    },
-    "changelog": {
-     "name": "Changelog",
-     "type": "md",
-     "content": "",
-     "path": "docs/general/changelog.md"
-    }
-   }
-  }
- },
- "classes": [
-  {
-   "name": "Achievements",
-   "description": "Main Achievements class.",
-   "extends": [
-    [
-     [
-      "Emitter"
-     ]
-    ]
-   ],
-   "construct": {
-    "name": "Achievements",
-    "description": "Achievements constructor.",
-    "params": [
-     {
-      "name": "client",
-      "description": "Discord Client.",
-      "type": [
-       [
-        [
-         "Client"
-        ]
-       ]
-      ]
-     },
-     {
-      "name": "options",
-      "description": "Module configuration.",
-      "type": [
-       [
-        [
-         "IAchievementsOptions",
-         "<"
-        ],
-        [
-         "IsMongoDBUsed",
-         ">"
-        ]
-       ]
-      ]
-     }
-    ]
-   },
-   "methods": [
-    {
-     "name": "init",
-     "description": "Initialize the module.",
-     "access": "private",
-     "async": true,
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "void",
-        ">"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 135,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "initManagers",
-     "description": "Initializes the managers.",
-     "access": "private",
-     "returns": [
-      [
-       [
-        "void"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 390,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "kill",
-     "description": "Destroys the module.",
-     "access": "private",
-     "returns": [
-      [
-       [
-        "void"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 428,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "create",
-     "description": "Create a new achievement.",
-     "params": [
-      {
-       "name": "guild",
-       "description": "The guild to create the achievement in.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "achievementObject",
-       "description": "The achievement's name.",
-       "type": [
-        [
-         [
-          "IAchievement",
-          "<"
-         ],
-         [
-          "T",
-          ">"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "The created achievement."
-     },
-     "meta": {
-      "line": 477,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "createMany",
-     "description": "Create a new achievement.",
-     "params": [
-      {
-       "name": "guild",
-       "description": "The guild to create the achievement in.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "achievementObjects",
-       "description": "The achievement's name.",
-       "variable": true,
-       "type": [
-        [
-         [
-          "IAchievement",
-          "<"
-         ],
-         [
-          "T",
-          ">"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Array",
-         "<"
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>>"
-        ]
-       ]
-      ],
-      "description": "The created achievements array."
-     },
-     "meta": {
-      "line": 568,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "all",
-     "description": "Get all achievements for the specified guild.",
-     "params": [
-      {
-       "name": "guild",
-       "description": "The guild to get achievements from.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Array",
-         "<"
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>>"
-        ]
-       ]
-      ],
-      "description": "The achievements array."
-     },
-     "meta": {
-      "line": 607,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "get",
-     "description": "Get an achievement by its ID.",
-     "params": [
-      {
-       "name": "id",
-       "description": "The achievement ID.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "guild",
-       "description": "The guild to get the achievement from.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "The achievement object."
-     },
-     "meta": {
-      "line": 642,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "getIndex",
-     "description": "Get an achievement index by its ID.",
-     "params": [
-      {
-       "name": "id",
-       "description": "The achievement ID.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "guild",
-       "description": "The guild to get the achievement from.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "number",
-         ">"
-        ]
-       ]
-      ],
-      "description": "The achievement object."
-     },
-     "meta": {
-      "line": 680,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "delete",
-     "description": "Delete the achievement.",
-     "params": [
-      {
-       "name": "id",
-       "description": "The achievement ID.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "guild",
-       "description": "The guild to delete the achievement from.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Deleted achievement object."
-     },
-     "meta": {
-      "line": 714,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "on",
-     "description": "Listens to the event.",
-     "inherits": "Emitter#on",
-     "inherited": true,
-     "params": [
-      {
-       "name": "event",
-       "description": "Event name.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "listener",
-       "description": "Callback function.",
-       "type": [
-        [
-         [
-          "function"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 14,
-      "file": "Emitter.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "once",
-     "description": "Listens to the event only once.",
-     "inherits": "Emitter#once",
-     "inherited": true,
-     "params": [
-      {
-       "name": "event",
-       "description": "Event name.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "listener",
-       "description": "Callback function.",
-       "type": [
-        [
-         [
-          "function"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 24,
-      "file": "Emitter.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "emit",
-     "description": "Emits the event.",
-     "inherits": "Emitter#emit",
-     "inherited": true,
-     "params": [
-      {
-       "name": "event",
-       "description": "Event name.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "args",
-       "description": "Parameters to pass in the event.",
-       "variable": true,
-       "type": [
-        [
-         [
-          "Array",
-          "<"
-         ],
-         [
-          "any",
-          ">"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 34,
-      "file": "Emitter.ts",
-      "path": "src/classes/util"
-     }
-    }
-   ],
-   "events": [
-    {
-     "name": "ready",
-     "description": "Emits when the module is ready.",
-     "params": [
-      {
-       "name": "achievements",
-       "description": "Achievements instance that was initialized and could be used.",
-       "type": [
-        [
-         [
-          "Achievements"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 746,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "destroy",
-     "description": "Emits when the module is destroyed.",
-     "meta": {
-      "line": 752,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "achievementProgress",
-     "description": "Emits when the progress has been made on an achievement.",
-     "params": [
-      {
-       "name": "progressionData",
-       "description": "Progression data object.",
-       "type": [
-        [
-         [
-          "IProgression",
-          "<"
-         ],
-         [
-          "true",
-          ">"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 757,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    },
-    {
-     "name": "achievementComplete",
-     "description": "Emits when the progress has been made on an achievement.",
-     "params": [
-      {
-       "name": "completionData",
-       "description": "Completion data object.",
-       "type": [
-        [
-         [
-          "ICompletion"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 763,
-      "file": "Achievements.ts",
-      "path": "src"
-     }
-    }
-   ],
-   "meta": {
-    "line": 30,
-    "file": "Achievements.ts",
-    "path": "src"
-   }
-  },
-  {
-   "name": "Achievement",
-   "description": "Achievement item class.",
-   "construct": {
-    "name": "Achievement",
-    "description": "Achievement completions manager."
-   },
-   "methods": [
-    {
-     "name": "grant",
-     "description": "Grants the achievement to a user.",
-     "params": [
-      {
-       "name": "user",
-       "description": "User to grant the achievement to.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "GuildMember"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "channel",
-       "description": "The channel where the achievement was granted in",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "TextChannel"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "IState",
-         "<'"
-        ],
-        [
-         "achievement'",
-         ", "
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>>"
-        ]
-       ]
-      ],
-      "description": "The granted achievement."
-     },
-     "meta": {
-      "line": 178,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "isCompleted",
-     "description": "Whether the achievement is completed by a user.",
-     "params": [
-      {
-       "name": "user",
-       "description": "User to check.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "GuildMember"
-         ]
-        ]
-       ]
-      }
-     ],
-     "returns": {
-      "types": [
-       [
-        [
-         "boolean"
-        ]
-       ]
-      ],
-      "description": "Whether the achievement is completed by the user."
-     },
-     "meta": {
-      "line": 253,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "update",
-     "description": "Updates the achievement in database.",
-     "params": [
-      {
-       "name": "updateCompletionPercent",
-       "description": "If true, percent of the guild members why completed the achievement will be updated.",
-       "default": false,
-       "type": [
-        [
-         [
-          "boolean"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "DatabaseProperties",
-        "<"
-       ],
-       [
-        "Required",
-        "<"
-       ],
-       [
-        "IAchievement",
-        "<"
-       ],
-       [
-        "T",
-        ">>>>"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 267,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "updateGuildCompletionPercentage",
-     "description": "Updates the achievement completion percentage.",
-     "async": true,
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "DatabaseProperties",
-        "<"
-       ],
-       [
-        "Required",
-        "<"
-       ],
-       [
-        "IAchievement",
-        "<"
-       ],
-       [
-        "T",
-        ">>>>"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 299,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "delete",
-     "description": "Delete the achievement.",
-     "params": [
-      {
-       "name": "guild",
-       "description": "The guild to delete the achievement from.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ],
-        [
-         [
-          "Guild"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Achievement",
-         "<"
-        ],
-        [
-         "T",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Deleted achievement object."
-     },
-     "meta": {
-      "line": 345,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "handleProgressUpdate",
-     "description": "Handles a progress update for the specified achievement type.",
-     "params": [
-      {
-       "name": "achievementType",
-       "description": "Achievement type to check.",
-       "type": [
-        [
-         [
-          "AchievementType"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "author",
-       "description": "Message author object.",
-       "type": [
-        [
-         [
-          "User"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "channel",
-       "description": "Text channel object.",
-       "type": [
-        [
-         [
-          "TextChannel"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "void",
-        ">"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 360,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "handleManyProgressUpdates",
-     "description": "Handles a progress updates for the specified achievement types.",
-     "params": [
-      {
-       "name": "achievementTypes",
-       "description": "Achievement types to check.",
-       "type": [
-        [
-         [
-          "Array",
-          "<"
-         ],
-         [
-          "AchievementType",
-          ">"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "author",
-       "description": "Message author object.",
-       "type": [
-        [
-         [
-          "User"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "channel",
-       "description": "Text channel object.",
-       "type": [
-        [
-         [
-          "TextChannel"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "void",
-        ">"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 521,
-      "file": "Achievement.ts",
-      "path": "src/classes"
-     }
-    }
-   ],
-   "meta": {
-    "line": 19,
-    "file": "Achievement.ts",
-    "path": "src/classes"
-   }
-  },
-  {
-   "name": "AchievementsError",
-   "description": "AchievementsError class.",
-   "extends": [
-    [
-     [
-      "Error"
-     ]
-    ]
-   ],
-   "meta": {
-    "line": 5,
-    "file": "AchievementsError.ts",
-    "path": "src/classes"
-   }
-  },
-  {
-   "name": "Emitter",
-   "description": "Achievements event emitter.",
-   "methods": [
-    {
-     "name": "on",
-     "description": "Listens to the event.",
-     "params": [
-      {
-       "name": "event",
-       "description": "Event name.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "listener",
-       "description": "Callback function.",
-       "type": [
-        [
-         [
-          "function"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 14,
-      "file": "Emitter.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "once",
-     "description": "Listens to the event only once.",
-     "params": [
-      {
-       "name": "event",
-       "description": "Event name.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "listener",
-       "description": "Callback function.",
-       "type": [
-        [
-         [
-          "function"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 24,
-      "file": "Emitter.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "emit",
-     "description": "Emits the event.",
-     "params": [
-      {
-       "name": "event",
-       "description": "Event name.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "args",
-       "description": "Parameters to pass in the event.",
-       "variable": true,
-       "type": [
-        [
-         [
-          "Array",
-          "<"
-         ],
-         [
-          "any",
-          ">"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 34,
-      "file": "Emitter.ts",
-      "path": "src/classes/util"
-     }
-    }
-   ],
-   "meta": {
-    "line": 9,
-    "file": "Emitter.ts",
-    "path": "src/classes/util"
-   }
-  },
-  {
-   "name": "Logger",
-   "description": "Achievements logger.",
-   "access": "private",
-   "construct": {
-    "name": "Logger",
-    "description": "Logger constructor.",
-    "params": [
-     {
-      "name": "options",
-      "description": "Logger configuration.",
-      "type": [
-       [
-        [
-         "LoggerOptions"
-        ]
-       ]
-      ]
-     }
-    ]
-   },
-   "props": [
-    {
-     "name": "options",
-     "description": "Logger configuration.",
-     "type": [
-      [
-       [
-        "LoggerOptions"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 17,
-      "file": "Logger.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "colors",
-     "description": "Logger colors object.",
-     "type": [
-      [
-       [
-        "LoggerColors"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 23,
-      "file": "Logger.ts",
-      "path": "src/classes/util"
-     }
-    }
-   ],
-   "methods": [
-    {
-     "name": "info",
-     "description": "Sends an info message to the console.",
-     "params": [
-      {
-       "name": "message",
-       "description": "A message to send.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "color",
-       "description": "Message color to use.",
-       "optional": true,
-       "default": "'red'",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 49,
-      "file": "Logger.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "warn",
-     "description": "Sends an warning message to the console.",
-     "params": [
-      {
-       "name": "message",
-       "description": "A message to send.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "color",
-       "description": "Message color to use.",
-       "optional": true,
-       "default": "'lightyellow'",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 58,
-      "file": "Logger.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "error",
-     "description": "Sends an error message to the console.",
-     "params": [
-      {
-       "name": "message",
-       "description": "A message to send.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "color",
-       "description": "Message color to use.",
-       "optional": true,
-       "default": "'red'",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 67,
-      "file": "Logger.ts",
-      "path": "src/classes/util"
-     }
-    },
-    {
-     "name": "debug",
-     "description": "Sends a debug message to the console.",
-     "params": [
-      {
-       "name": "message",
-       "description": "A message to send.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "color",
-       "description": "Message color to use.",
-       "optional": true,
-       "default": "'yellow'",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "meta": {
-      "line": 76,
-      "file": "Logger.ts",
-      "path": "src/classes/util"
-     }
-    }
-   ],
-   "meta": {
-    "line": 3,
-    "file": "Logger.ts",
-    "path": "src/classes/util"
-   }
-  },
-  {
-   "name": "DatabaseManager",
-   "description": "Database Manager class.",
-   "construct": {
-    "name": "DatabaseManager",
-    "description": "Database manager.",
-    "params": [
-     {
-      "name": "achievements",
-      "description": "Achievements instance.",
-      "type": [
-       [
-        [
-         "Achievements"
-        ]
-       ]
-      ]
-     }
-    ]
-   },
-   "props": [
-    {
-     "name": "options",
-     "description": "Module configuration.",
-     "type": [
-      [
-       [
-        "IAchievementsOptions"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 41,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "mongo",
-     "description": "Database connection.",
-     "access": "private",
-     "type": [
-      [
-       [
-        "QuickMongo"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 47,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    }
-   ],
-   "methods": [
-    {
-     "name": "keys",
-     "description": "Gets a list of keys in database.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "Array",
-         "<"
-        ],
-        [
-         "string",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "An array with all keys in database or 'null' if nothing found."
-     },
-     "meta": {
-      "line": 55,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "all",
-     "description": "Gets all the data in database",
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Database object."
-     },
-     "meta": {
-      "line": 76,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "clear",
-     "description": "Clears the database.",
-     "async": true,
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "boolean",
-        ">"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 98,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "set",
-     "description": "Sets the specified data in the database.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "value",
-       "description": "Value to set.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 127,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "fetch",
-     "description": "Fetches the data from database.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "T",
-         ">"
-        ]
-       ]
-      ],
-      "description": "Fetched data object for a specified key."
-     },
-     "meta": {
-      "line": 196,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "has",
-     "description": "Checks if the element is existing in database.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "boolean",
-         ">"
-        ]
-       ]
-      ],
-      "description": "True if the element is existing in database, false otherwise."
-     },
-     "meta": {
-      "line": 237,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "includes",
-     "description": "Checks if the element is existing in database.\r\rThis method is an alias for {@link DatabaseManager.has()} method.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "boolean",
-         ">"
-        ]
-       ]
-      ],
-      "description": "True if the element is existing in database, false otherwise."
-     },
-     "meta": {
-      "line": 261,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "delete",
-     "description": "Deletes the specified key from database.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 272,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "get",
-     "description": "Fetches the data from database.\r\rThis method is an alias for {@link DatabaseManager.fetch()} method.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "T",
-         ">"
-        ]
-       ]
-      ],
-      "description": "Fetched data object for a specified key."
-     },
-     "meta": {
-      "line": 322,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "remove",
-     "description": "Deletes the specified key from database.\r\rThis method is an alias for {@link DatabaseManager.delete()} method.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      }
-     ],
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 333,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "add",
-     "description": "Adds a number to a property data in database.\r\r[!] Target must be a number.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "value",
-       "description": "Any number to add.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 344,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "subtract",
-     "description": "Subtracts a number from a property data in database.\r\r[!] Target must be a number.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "value",
-       "description": "Any number to add.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 402,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "push",
-     "description": "Pushes a value into an array in database.\r\r[!] Target must be an array.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "value",
-       "description": "Any value to push.",
-       "type": [
-        [
-         [
-          "any"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 460,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "pop",
-     "description": "Pops a value from an array in database.\r\r[!] Target must be an array.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "index",
-       "description": "The index in the array.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 510,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    },
-    {
-     "name": "pull",
-     "description": "Changes the specified element's value in a specified array in the database.\r\r[!] Target must be an array.",
-     "params": [
-      {
-       "name": "key",
-       "description": "The key in database.",
-       "type": [
-        [
-         [
-          "string"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "index",
-       "description": "The index in the array.",
-       "type": [
-        [
-         [
-          "number"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "newValue",
-       "description": "The new value to set.",
-       "type": [
-        [
-         [
-          "any"
-         ]
-        ]
-       ]
-      }
-     ],
-     "async": true,
-     "returns": {
-      "types": [
-       [
-        [
-         "Promise",
-         "<"
-        ],
-        [
-         "DatabaseProperties",
-         "<"
-        ],
-        [
-         "P",
-         ">>"
-        ]
-       ]
-      ],
-      "description": "Updated data object for specified key."
-     },
-     "meta": {
-      "line": 567,
-      "file": "DatabaseManager.ts",
-      "path": "src/managers"
-     }
-    }
-   ],
-   "meta": {
-    "line": 16,
-    "file": "DatabaseManager.ts",
-    "path": "src/managers"
-   }
-  },
-  {
-   "name": "UtilsManager",
-   "description": "Utils manager class.",
-   "access": "private",
-   "construct": {
-    "name": "UtilsManager",
-    "description": "Module logger."
-   },
-   "methods": [
-    {
-     "name": "checkOptions",
-     "description": "Checks the configuration, shows the problems, fixes them and returns a fixed configuration object.",
-     "params": [
-      {
-       "name": "options",
-       "description": "Options checker configuration.",
-       "type": [
-        [
-         [
-          "CheckerOptions"
-         ]
-        ]
-       ]
-      },
-      {
-       "name": "achievementsConfiguration",
-       "description": "Economy configuration to check.",
-       "type": [
-        [
-         [
-          "IAchievementsOptions"
-         ]
-        ]
-       ]
-      }
-     ],
-     "returns": {
-      "types": [
-       [
-        [
-         "IAchievementsOptions"
-        ]
-       ]
-      ],
-      "description": "Fixed Economy configuration."
-     },
-     "meta": {
-      "line": 50,
-      "file": "UtilsManager.ts",
-      "path": "src/managers"
-     }
-    }
-   ],
-   "meta": {
-    "line": 16,
-    "file": "UtilsManager.ts",
-    "path": "src/managers"
-   }
-  }
- ],
- "interfaces": [],
- "typedefs": [],
- "externals": []
+    "classes": [
+        {
+            "name": "Achievements",
+            "description": "Main Achievements class.\r\rType parameters:\r\r- IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.",
+            "extends": [
+                [
+                    [
+                        "Emitter"
+                    ]
+                ]
+            ],
+            "construct": {
+                "name": "Achievements",
+                "description": "Achievements constructor.",
+                "params": [
+                    {
+                        "name": "client",
+                        "description": "Discord Client.",
+                        "type": [
+                            [
+                                [
+                                    "Client"
+                                ]
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "options",
+                        "description": "Module configuration.",
+                        "type": [
+                            [
+                                [
+                                    "IAchievementsOptions",
+                                    "<"
+                                ],
+                                [
+                                    "IsMongoDBUsed",
+                                    ">"
+                                ]
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "props": [
+                {
+                    "name": "version",
+                    "description": "Module version.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 69,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "client",
+                    "description": "Discord Client.",
+                    "type": [
+                        [
+                            [
+                                "Client"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 75,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "interval",
+                    "description": "JSON database file checking interval.",
+                    "type": [
+                        [
+                            [
+                                "NodeJS",
+                                "."
+                            ],
+                            [
+                                "Timer"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 81,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "_logger",
+                    "description": "Module logger.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "Logger"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 87,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "managers",
+                    "description": "Achievements managers list. Made for optimization purposes.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "Array",
+                                "<"
+                            ],
+                            [
+                                "IManager",
+                                "<"
+                            ],
+                            [
+                                "IsMongoDBUsed",
+                                ">>"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 96,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "utils",
+                    "description": "Utils Manager.",
+                    "type": [
+                        [
+                            [
+                                "UtilsManager"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 107,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "options",
+                    "description": "Module configuration.",
+                    "type": [
+                        [
+                            [
+                                "IAchievementsOptions"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 113,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "plugins",
+                    "description": "Achievements plugins object.",
+                    "type": [
+                        [
+                            [
+                                "IAchievementsPlugins",
+                                "<"
+                            ],
+                            [
+                                "IsMongoDBUsed",
+                                ">"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 119,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "database",
+                    "description": "Database Manager.",
+                    "type": [
+                        [
+                            [
+                                "DatabaseManager"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 125,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "mongo",
+                    "description": "MongoDB Connection.",
+                    "type": [
+                        [
+                            [
+                                "QuickMongo"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 131,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "init",
+                    "description": "Initialize the module.",
+                    "access": "public",
+                    "async": true,
+                    "returns": [
+                        [
+                            [
+                                "Promise",
+                                "<"
+                            ],
+                            [
+                                "void",
+                                ">"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 141,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "initManagers",
+                    "description": "Initializes the managers.",
+                    "access": "private",
+                    "returns": [
+                        [
+                            [
+                                "void"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 398,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "kill",
+                    "description": "Destroys the module.",
+                    "returns": [
+                        [
+                            [
+                                "void"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 436,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "create",
+                    "description": "Create a new achievement.",
+                    "params": [
+                        {
+                            "name": "guild",
+                            "description": "The guild to create the achievement in.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "achievementObject",
+                            "description": "The achievement's name.",
+                            "type": [
+                                [
+                                    [
+                                        "IAchievement",
+                                        "<"
+                                    ],
+                                    [
+                                        "T",
+                                        ">"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "The created achievement."
+                    },
+                    "meta": {
+                        "line": 484,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "createMany",
+                    "description": "Create a new achievement.",
+                    "params": [
+                        {
+                            "name": "guild",
+                            "description": "The guild to create the achievement in.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "achievementObjects",
+                            "description": "The achievement's name.",
+                            "variable": true,
+                            "type": [
+                                [
+                                    [
+                                        "IAchievement",
+                                        "<"
+                                    ],
+                                    [
+                                        "T",
+                                        ">"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Array",
+                                    "<"
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>>"
+                                ]
+                            ]
+                        ],
+                        "description": "The created achievements array."
+                    },
+                    "meta": {
+                        "line": 575,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "all",
+                    "description": "Get all achievements for the specified guild.",
+                    "params": [
+                        {
+                            "name": "guild",
+                            "description": "The guild to get achievements from.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Array",
+                                    "<"
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>>"
+                                ]
+                            ]
+                        ],
+                        "description": "The achievements array."
+                    },
+                    "meta": {
+                        "line": 614,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "get",
+                    "description": "Get an achievement by its ID.",
+                    "params": [
+                        {
+                            "name": "id",
+                            "description": "The achievement ID.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "guild",
+                            "description": "The guild to get the achievement from.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "The achievement object."
+                    },
+                    "meta": {
+                        "line": 649,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "getIndex",
+                    "description": "Get an achievement index by its ID.",
+                    "params": [
+                        {
+                            "name": "id",
+                            "description": "The achievement ID.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "guild",
+                            "description": "The guild to get the achievement from.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "number",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The achievement object."
+                    },
+                    "meta": {
+                        "line": 687,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "delete",
+                    "description": "Delete the achievement.",
+                    "params": [
+                        {
+                            "name": "id",
+                            "description": "The achievement ID.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "guild",
+                            "description": "The guild to delete the achievement from.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Deleted achievement object."
+                    },
+                    "meta": {
+                        "line": 721,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "on",
+                    "description": "Listens to the event.",
+                    "inherits": "Emitter#on",
+                    "inherited": true,
+                    "params": [
+                        {
+                            "name": "event",
+                            "description": "Event name.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "listener",
+                            "description": "Callback function.",
+                            "type": [
+                                [
+                                    [
+                                        "function"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 14,
+                        "file": "Emitter.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "once",
+                    "description": "Listens to the event only once.",
+                    "inherits": "Emitter#once",
+                    "inherited": true,
+                    "params": [
+                        {
+                            "name": "event",
+                            "description": "Event name.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "listener",
+                            "description": "Callback function.",
+                            "type": [
+                                [
+                                    [
+                                        "function"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 24,
+                        "file": "Emitter.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "emit",
+                    "description": "Emits the event.",
+                    "inherits": "Emitter#emit",
+                    "inherited": true,
+                    "params": [
+                        {
+                            "name": "event",
+                            "description": "Event name.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "args",
+                            "description": "Parameters to pass in the event.",
+                            "variable": true,
+                            "type": [
+                                [
+                                    [
+                                        "Array",
+                                        "<"
+                                    ],
+                                    [
+                                        "any",
+                                        ">"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 34,
+                        "file": "Emitter.ts",
+                        "path": "src/classes/util"
+                    }
+                }
+            ],
+            "events": [
+                {
+                    "name": "ready",
+                    "description": "Emits when the module is ready.",
+                    "params": [
+                        {
+                            "name": "achievements",
+                            "description": "Achievements instance that was initialized and could be used.",
+                            "type": [
+                                [
+                                    [
+                                        "Achievements"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 753,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "destroy",
+                    "description": "Emits when the module is destroyed.",
+                    "meta": {
+                        "line": 759,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "achievementProgress",
+                    "description": "Emits when the progress has been made on an achievement.",
+                    "params": [
+                        {
+                            "name": "progressionData",
+                            "description": "Progression data object.",
+                            "type": [
+                                [
+                                    [
+                                        "IProgression",
+                                        "<"
+                                    ],
+                                    [
+                                        "true",
+                                        ">"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 764,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                },
+                {
+                    "name": "achievementComplete",
+                    "description": "Emits when the progress has been made on an achievement.",
+                    "params": [
+                        {
+                            "name": "completionData",
+                            "description": "Completion data object.",
+                            "type": [
+                                [
+                                    [
+                                        "ICompletion"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 770,
+                        "file": "Achievements.ts",
+                        "path": "src"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 27,
+                "file": "Achievements.ts",
+                "path": "src"
+            }
+        },
+        {
+            "name": "Achievement",
+            "description": "Achievement item class.\r\rType parameters:\r\r- T (object): Optional object that would be stored in `custom` property of the achievement. Default: any.",
+            "implements": [
+                [
+                    [
+                        "IAchievement",
+                        "<"
+                    ],
+                    [
+                        "T",
+                        ">"
+                    ]
+                ]
+            ],
+            "construct": {
+                "name": "Achievement",
+                "description": "Achievement completions manager."
+            },
+            "methods": [
+                {
+                    "name": "grant",
+                    "description": "Grants the achievement to a user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "User to grant the achievement to.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the achievement was granted in",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "TextChannel"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "IState",
+                                    "<'"
+                                ],
+                                [
+                                    "achievement'",
+                                    ", "
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>>"
+                                ]
+                            ]
+                        ],
+                        "description": "The granted achievement."
+                    },
+                    "meta": {
+                        "line": 184,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "isCompleted",
+                    "description": "Whether the achievement is completed by a user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "User to check.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "boolean"
+                                ]
+                            ]
+                        ],
+                        "description": "Whether the achievement is completed by the user."
+                    },
+                    "meta": {
+                        "line": 259,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "update",
+                    "description": "Updates the achievement in database.",
+                    "params": [
+                        {
+                            "name": "updateCompletionPercent",
+                            "description": "If true, percent of the guild members why completed the achievement will be updated.",
+                            "default": false,
+                            "type": [
+                                [
+                                    [
+                                        "boolean"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": [
+                        [
+                            [
+                                "Promise",
+                                "<"
+                            ],
+                            [
+                                "DatabaseProperties",
+                                "<"
+                            ],
+                            [
+                                "Required",
+                                "<"
+                            ],
+                            [
+                                "IAchievement",
+                                "<"
+                            ],
+                            [
+                                "T",
+                                ">>>>"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 273,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "updateGuildCompletionPercentage",
+                    "description": "Updates the achievement completion percentage.",
+                    "async": true,
+                    "returns": [
+                        [
+                            [
+                                "Promise",
+                                "<"
+                            ],
+                            [
+                                "DatabaseProperties",
+                                "<"
+                            ],
+                            [
+                                "Required",
+                                "<"
+                            ],
+                            [
+                                "IAchievement",
+                                "<"
+                            ],
+                            [
+                                "T",
+                                ">>>>"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 305,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "delete",
+                    "description": "Delete the achievement.",
+                    "params": [
+                        {
+                            "name": "guild",
+                            "description": "The guild to delete the achievement from.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "Guild"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Achievement",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Deleted achievement object."
+                    },
+                    "meta": {
+                        "line": 351,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "handleProgressUpdate",
+                    "description": "Handles a progress update for the specified achievement type.",
+                    "params": [
+                        {
+                            "name": "achievementType",
+                            "description": "Achievement type to check.",
+                            "type": [
+                                [
+                                    [
+                                        "AchievementType"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "author",
+                            "description": "Message author object.",
+                            "type": [
+                                [
+                                    [
+                                        "User"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "channel",
+                            "description": "Text channel object.",
+                            "type": [
+                                [
+                                    [
+                                        "TextChannel"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": [
+                        [
+                            [
+                                "Promise",
+                                "<"
+                            ],
+                            [
+                                "void",
+                                ">"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 366,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "handleManyProgressUpdates",
+                    "description": "Handles a progress updates for the specified achievement types.",
+                    "params": [
+                        {
+                            "name": "achievementTypes",
+                            "description": "Achievement types to check.",
+                            "type": [
+                                [
+                                    [
+                                        "Array",
+                                        "<"
+                                    ],
+                                    [
+                                        "AchievementType",
+                                        ">"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "author",
+                            "description": "Message author object.",
+                            "type": [
+                                [
+                                    [
+                                        "User"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "channel",
+                            "description": "Text channel object.",
+                            "type": [
+                                [
+                                    [
+                                        "TextChannel"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": [
+                        [
+                            [
+                                "Promise",
+                                "<"
+                            ],
+                            [
+                                "void",
+                                ">"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 527,
+                        "file": "Achievement.ts",
+                        "path": "src/classes"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 19,
+                "file": "Achievement.ts",
+                "path": "src/classes"
+            }
+        },
+        {
+            "name": "AchievementsError",
+            "description": "Achievements error class.",
+            "extends": [
+                [
+                    [
+                        "Error"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "name",
+                    "description": "Error name.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 24,
+                        "file": "AchievementsError.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "code",
+                    "description": "Error code.",
+                    "type": [
+                        [
+                            [
+                                "ErrorCodes"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 30,
+                        "file": "AchievementsError.ts",
+                        "path": "src/classes"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 5,
+                "file": "AchievementsError.ts",
+                "path": "src/classes"
+            }
+        },
+        {
+            "name": "Completions",
+            "description": "Achievement completions manager class.",
+            "props": [
+                {
+                    "name": "achievement",
+                    "description": "Achievement object that will be edited.",
+                    "type": [
+                        [
+                            [
+                                "Achievement"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 19,
+                        "file": "Completions.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "database",
+                    "description": "Database manager.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "DatabaseManager"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 25,
+                        "file": "Completions.achievement.ts",
+                        "path": "src/classes"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "add",
+                    "description": "Sets the the achievement as completed for the specified user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to set the completion to.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "ICompletion",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated completion object."
+                    },
+                    "meta": {
+                        "line": 47,
+                        "file": "Completions.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "get",
+                    "description": "Gets the specified user's completion towards the achievement.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to get the completion of.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "ICompletion",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated completion object."
+                    },
+                    "meta": {
+                        "line": 101,
+                        "file": "Completions.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "delete",
+                    "description": "Deletes the specified user's achievement completion.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to delete the completion of.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "ICompletion",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated completion object."
+                    },
+                    "meta": {
+                        "line": 142,
+                        "file": "Completions.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "all",
+                    "description": "Gets all the completions of the user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to get the completion of.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "ICompletion",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated completion object."
+                    },
+                    "meta": {
+                        "line": 188,
+                        "file": "Completions.achievement.ts",
+                        "path": "src/classes"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 10,
+                "file": "Completions.achievement.ts",
+                "path": "src/classes"
+            }
+        },
+        {
+            "name": "Progresses",
+            "description": "Achievement progressions manager class.",
+            "props": [
+                {
+                    "name": "achievement",
+                    "description": "Achievement object that will be edited.",
+                    "type": [
+                        [
+                            [
+                                "Achievement"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 19,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "database",
+                    "description": "Database manager.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "DatabaseManager"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 25,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "set",
+                    "description": "Sets the progress of the achievement for the specified user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "Percentage of the achievement completed.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "IProgression",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated progression object."
+                    },
+                    "meta": {
+                        "line": 49,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "reset",
+                    "description": "Resets the progress of the achievement for the specified user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "IProgression",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated progression object."
+                    },
+                    "meta": {
+                        "line": 101,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "get",
+                    "description": "Gets the specified user's progression towards the achievement.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to get the progression of.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "IProgression",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated progression object."
+                    },
+                    "meta": {
+                        "line": 148,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "delete",
+                    "description": "Gets the specified user's progression towards the achievement.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to delete the progression of.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "IProgression",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated progression object."
+                    },
+                    "meta": {
+                        "line": 182,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                },
+                {
+                    "name": "all",
+                    "description": "Gets all the progresses the user.",
+                    "params": [
+                        {
+                            "name": "user",
+                            "description": "The user to get the progression of.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ],
+                                [
+                                    [
+                                        "GuildMember"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "IProgression",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "The updated progression object."
+                    },
+                    "meta": {
+                        "line": 227,
+                        "file": "Progresses.achievement.ts",
+                        "path": "src/classes"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 10,
+                "file": "Progresses.achievement.ts",
+                "path": "src/classes"
+            }
+        },
+        {
+            "name": "Emitter",
+            "description": "Achievements event emitter class.",
+            "methods": [
+                {
+                    "name": "on",
+                    "description": "Listens to the event.",
+                    "params": [
+                        {
+                            "name": "event",
+                            "description": "Event name.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "listener",
+                            "description": "Callback function.",
+                            "type": [
+                                [
+                                    [
+                                        "function"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 14,
+                        "file": "Emitter.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "once",
+                    "description": "Listens to the event only once.",
+                    "params": [
+                        {
+                            "name": "event",
+                            "description": "Event name.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "listener",
+                            "description": "Callback function.",
+                            "type": [
+                                [
+                                    [
+                                        "function"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 24,
+                        "file": "Emitter.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "emit",
+                    "description": "Emits the event.",
+                    "params": [
+                        {
+                            "name": "event",
+                            "description": "Event name.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "args",
+                            "description": "Parameters to pass in the event.",
+                            "variable": true,
+                            "type": [
+                                [
+                                    [
+                                        "Array",
+                                        "<"
+                                    ],
+                                    [
+                                        "any",
+                                        ">"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 34,
+                        "file": "Emitter.ts",
+                        "path": "src/classes/util"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 9,
+                "file": "Emitter.ts",
+                "path": "src/classes/util"
+            }
+        },
+        {
+            "name": "Logger",
+            "description": "Achievements logger class.",
+            "access": "private",
+            "construct": {
+                "name": "Logger",
+                "description": "Logger constructor.",
+                "params": [
+                    {
+                        "name": "options",
+                        "description": "Logger configuration.",
+                        "type": [
+                            [
+                                [
+                                    "ILoggerOptions"
+                                ]
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "props": [
+                {
+                    "name": "options",
+                    "description": "Logger configuration.",
+                    "type": [
+                        [
+                            [
+                                "LoggerOptions"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 18,
+                        "file": "Logger.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "colors",
+                    "description": "Logger colors object.",
+                    "type": [
+                        [
+                            [
+                                "LoggerColors"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 24,
+                        "file": "Logger.ts",
+                        "path": "src/classes/util"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "info",
+                    "description": "Sends an info message to the console.",
+                    "params": [
+                        {
+                            "name": "message",
+                            "description": "A message to send.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "color",
+                            "description": "Message color to use.",
+                            "optional": true,
+                            "default": "'red'",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 50,
+                        "file": "Logger.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "warn",
+                    "description": "Sends an warning message to the console.",
+                    "params": [
+                        {
+                            "name": "message",
+                            "description": "A message to send.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "color",
+                            "description": "Message color to use.",
+                            "optional": true,
+                            "default": "'lightyellow'",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 59,
+                        "file": "Logger.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "error",
+                    "description": "Sends an error message to the console.",
+                    "params": [
+                        {
+                            "name": "message",
+                            "description": "A message to send.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "color",
+                            "description": "Message color to use.",
+                            "optional": true,
+                            "default": "'red'",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 68,
+                        "file": "Logger.ts",
+                        "path": "src/classes/util"
+                    }
+                },
+                {
+                    "name": "debug",
+                    "description": "Sends a debug message to the console.",
+                    "params": [
+                        {
+                            "name": "message",
+                            "description": "A message to send.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "color",
+                            "description": "Message color to use.",
+                            "optional": true,
+                            "default": "'yellow'",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "meta": {
+                        "line": 77,
+                        "file": "Logger.ts",
+                        "path": "src/classes/util"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 4,
+                "file": "Logger.ts",
+                "path": "src/classes/util"
+            }
+        },
+        {
+            "name": "DatabaseManager",
+            "description": "Database manager class.",
+            "construct": {
+                "name": "DatabaseManager",
+                "description": "Database manager.",
+                "params": [
+                    {
+                        "name": "achievements",
+                        "description": "Achievements instance.",
+                        "type": [
+                            [
+                                [
+                                    "Achievements"
+                                ]
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "props": [
+                {
+                    "name": "options",
+                    "description": "Module configuration.",
+                    "type": [
+                        [
+                            [
+                                "IAchievementsOptions"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 29,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "mongo",
+                    "description": "Database connection.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "QuickMongo"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 35,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "keys",
+                    "description": "Gets a list of keys in database.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "Array",
+                                    "<"
+                                ],
+                                [
+                                    "string",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "An array with all keys in database or 'null' if nothing found."
+                    },
+                    "meta": {
+                        "line": 43,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "all",
+                    "description": "Gets all the data in database",
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Database object."
+                    },
+                    "meta": {
+                        "line": 64,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "clear",
+                    "description": "Clears the database.",
+                    "async": true,
+                    "returns": [
+                        [
+                            [
+                                "Promise",
+                                "<"
+                            ],
+                            [
+                                "boolean",
+                                ">"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 86,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "set",
+                    "description": "Sets the specified data in the database.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "Value to set.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 115,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "fetch",
+                    "description": "Fetches the data from database.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "Fetched data object for a specified key."
+                    },
+                    "meta": {
+                        "line": 184,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "has",
+                    "description": "Checks if the element is existing in database.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "boolean",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "True if the element is existing in database, false otherwise."
+                    },
+                    "meta": {
+                        "line": 225,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "includes",
+                    "description": "Checks if the element is existing in database.\r\rThis method is an alias for {@link DatabaseManager.has()} method.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "boolean",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "True if the element is existing in database, false otherwise."
+                    },
+                    "meta": {
+                        "line": 249,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "delete",
+                    "description": "Deletes the specified key from database.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 260,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "get",
+                    "description": "Fetches the data from database.\r\rThis method is an alias for {@link DatabaseManager.fetch()} method.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "T",
+                                    ">"
+                                ]
+                            ]
+                        ],
+                        "description": "Fetched data object for a specified key."
+                    },
+                    "meta": {
+                        "line": 310,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "remove",
+                    "description": "Deletes the specified key from database.\r\rThis method is an alias for {@link DatabaseManager.delete()} method.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 321,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "add",
+                    "description": "Adds a number to a property data in database.\r\r[!] Target must be a number.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "Any number to add.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 332,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "subtract",
+                    "description": "Subtracts a number from a property data in database.\r\r[!] Target must be a number.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "Any number to add.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 390,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "push",
+                    "description": "Pushes a value into an array in database.\r\r[!] Target must be an array.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "Any value to push.",
+                            "type": [
+                                [
+                                    [
+                                        "any"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 448,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "pop",
+                    "description": "Pops a value from an array in database.\r\r[!] Target must be an array.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "index",
+                            "description": "The index in the array.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 498,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "pull",
+                    "description": "Changes the specified element's value in a specified array in the database.\r\r[!] Target must be an array.",
+                    "params": [
+                        {
+                            "name": "key",
+                            "description": "The key in database.",
+                            "type": [
+                                [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "index",
+                            "description": "The index in the array.",
+                            "type": [
+                                [
+                                    [
+                                        "number"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "newValue",
+                            "description": "The new value to set.",
+                            "type": [
+                                [
+                                    [
+                                        "any"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "async": true,
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "Promise",
+                                    "<"
+                                ],
+                                [
+                                    "DatabaseProperties",
+                                    "<"
+                                ],
+                                [
+                                    "P",
+                                    ">>"
+                                ]
+                            ]
+                        ],
+                        "description": "Updated data object for specified key."
+                    },
+                    "meta": {
+                        "line": 555,
+                        "file": "DatabaseManager.ts",
+                        "path": "src/managers"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 16,
+                "file": "DatabaseManager.ts",
+                "path": "src/managers"
+            }
+        },
+        {
+            "name": "UtilsManager",
+            "description": "Utils manager class.",
+            "props": [
+                {
+                    "name": "achievements",
+                    "description": "Main Achievements instance.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "Achievements"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 27,
+                        "file": "UtilsManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "options",
+                    "description": "Module configuration.",
+                    "type": [
+                        [
+                            [
+                                "IAchievementsOptions"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 34,
+                        "file": "UtilsManager.ts",
+                        "path": "src/managers"
+                    }
+                },
+                {
+                    "name": "_logger",
+                    "description": "Module logger.",
+                    "access": "private",
+                    "type": [
+                        [
+                            [
+                                "Logger"
+                            ]
+                        ]
+                    ],
+                    "meta": {
+                        "line": 40,
+                        "file": "UtilsManager.ts",
+                        "path": "src/managers"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "checkOptions",
+                    "description": "Checks the configuration, shows the problems, fixes them and returns a fixed configuration object.",
+                    "params": [
+                        {
+                            "name": "options",
+                            "description": "Options checker configuration.",
+                            "type": [
+                                [
+                                    [
+                                        "CheckerOptions"
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "name": "achievementsConfiguration",
+                            "description": "Economy configuration to check.",
+                            "type": [
+                                [
+                                    [
+                                        "IAchievementsOptions"
+                                    ]
+                                ]
+                            ]
+                        }
+                    ],
+                    "returns": {
+                        "types": [
+                            [
+                                [
+                                    "IAchievementsOptions"
+                                ]
+                            ]
+                        ],
+                        "description": "Fixed Economy configuration."
+                    },
+                    "meta": {
+                        "line": 50,
+                        "file": "UtilsManager.ts",
+                        "path": "src/managers"
+                    }
+                }
+            ],
+            "meta": {
+                "line": 16,
+                "file": "UtilsManager.ts",
+                "path": "src/managers"
+            }
+        }
+    ],
+    "interfaces": [],
+    "typedefs": [
+        {
+            "name": "CompletionPercentageUpdateType",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "MEMBER_ADD",
+                    "description": "Member add completion percentage update type.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "MEMBER_REMOVE",
+                    "description": "Member remove completion percentage update type.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 550,
+                "file": "Achievement.ts",
+                "path": "src/classes"
+            }
+        },
+        {
+            "name": "ILoggerOptions",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "debug",
+                    "description": "If true, debug mode will be enabled.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 95,
+                "file": "Logger.ts",
+                "path": "src/classes/util"
+            }
+        },
+        {
+            "name": "ErrorCodes",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "UNKNOWN_ERROR",
+                    "description": "'UNKNOWN_ERROR' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "INVALID_ERROR_CODE",
+                    "description": "'INVALID_ERROR_CODE' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "INVALID_TYPE",
+                    "description": "'INVALID_TYPE' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "REQUIRED_PARAMETER_MISSING",
+                    "description": "'REQUIRED_PARAMETER_MISSING' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "MODULE_NOT_READY",
+                    "description": "'MODULE_NOT_READY' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "STORAGE_FILE_ERROR",
+                    "description": "'STORAGE_FILE_ERROR' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "NO_CONNECTION_DATA",
+                    "description": "'NO_CONNECTION_DATA' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "INVALID_TARGET_TYPE",
+                    "description": "'INVALID_TARGET_TYPE' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "TARGET_IS_EMPTY",
+                    "description": "'TARGET_IS_EMPTY error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "NO_DISCORD_CLIENT",
+                    "description": "'NO_DISCORD_CLIENT' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "CONNECTION_ERROR",
+                    "description": "'CONNECTION_ERROR' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "DATABASE_OPTIONS_MISMATCH",
+                    "description": "'DATABASE_OPTIONS_MISMATCH' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "ACHIEVEMENT_NOT_FOUND",
+                    "description": "'ACHIEVEMENT_NOT_FOUND' error code.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 17,
+                "file": "ErrorCodes.ts",
+                "path": "src/structures"
+            }
+        },
+        {
+            "name": "IAchievement<T>",
+            "description": "Achievement object interface.\r\rType parameters:\r\r- T (object): Optional object that would be stored in `custom` property of the achievement. Default: any.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "id",
+                    "description": "Achievement ID.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "guildID",
+                    "description": "Guild ID where the achievement was created.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "name",
+                    "description": "Name of the achievement.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "description",
+                    "description": "Description of the achievement.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "reward",
+                    "description": "Reward for the achievement.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "icon",
+                    "description": "Achievement icon.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "trackingTarget",
+                    "description": "Requirement for the achievement for getting it that would be tracked automatically.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "IAchievementRequirement"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "completions",
+                    "description": "Achievement completions array.",
+                    "type": [
+                        [
+                            [
+                                "Array",
+                                "<"
+                            ],
+                            [
+                                "ICompletion",
+                                ">"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "completionPercentage",
+                    "description": "Percent of guild members completed the achievement.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "createdAt",
+                    "description": "Date when the achievement was created.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "custom",
+                    "description": "Custom data for the achievement.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "CustomAchievementData",
+                                "<"
+                            ],
+                            [
+                                "T",
+                                ">"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 173,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "ICompletion",
+            "description": "Achievement completion object.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "achievementID",
+                    "description": "Achievement ID.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "icon",
+                    "description": "Achievement icon.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "guildID",
+                    "description": "Guild ID where the achievement was completed.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "userIDUser",
+                    "description": "ID who completed the achievement.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "completedAt",
+                    "description": "Date when the achievement was completed.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 195,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IBaseProgression",
+            "description": "Base achievement progression object.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "achievementID",
+                    "description": "Achievement ID.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "achievementName",
+                    "description": "Achievement ID.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "progress",
+                    "description": "Percentage of the achievement completed.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 204,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "ICompletionEvent",
+            "description": "Achievement completion event object.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "guild",
+                    "description": "The where the achievement was completed.",
+                    "type": [
+                        [
+                            [
+                                "Guild"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "user",
+                    "description": "The user who completed the achievement.",
+                    "type": [
+                        [
+                            [
+                                "GuildMember"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "achievement",
+                    "description": "The achievement that was completed.",
+                    "type": [
+                        [
+                            [
+                                "Achievement"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "channel",
+                    "description": "The channel where the achievement was completed.",
+                    "type": [
+                        [
+                            [
+                                "TextChannel"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 211,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IAdditionalInfo",
+            "description": "Additional information object for the achievement.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "guild",
+                    "description": "Guild object.",
+                    "type": [
+                        [
+                            [
+                                "Guild"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "user",
+                    "description": "User object.",
+                    "type": [
+                        [
+                            [
+                                "GuildMember"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "achievement",
+                    "description": "Achievement object.",
+                    "type": [
+                        [
+                            [
+                                "Achievement"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 219,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IProgression<AdditionalInfoProvided>",
+            "description": "Achievement progression object.\r\rType parameters:\r\r- AdditionalInfoProvided (boolean): Optional. Sets to `true` if {@link IAdditionalInfo} will be provided.\rOtherwise, the type of this object is {@link IBaseProgression}",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "meta": {
+                "line": 226,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "AchievementType",
+            "description": "Achievement types.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "MONEY",
+                    "description": "All achievements' proggreses will be updated on `balanceAdd` event of Economy.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "MESSAGES",
+                    "description": "All achievements' proggreses will be updated on `messageCreate` event of a Discord Client.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "LEVELS",
+                    "description": "All achievements' proggreses will be updated on `levelUp` event of Leveling.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "XP",
+                    "description": "All achievements' proggreses will be updated on `addXP` event of Leveling.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 235,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IAchievementRequirement",
+            "description": "Requirement object for the achievement that will be tracked automatically.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "type",
+                    "description": "Type of the requirement.",
+                    "type": [
+                        [
+                            [
+                                "AchievementType"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "target",
+                    "description": "Target value to complete the achievement.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 243,
+                "file": "achievement.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IAchievementsPlugins<IsMongoDBUsed>",
+            "description": "Achievements plugins object.\r\rType parameters:\r\r- IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "economy",
+                    "description": "Economy plugin.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "If",
+                                "<"
+                            ],
+                            [
+                                "IsMongoDBUsed",
+                                ", "
+                            ],
+                            [
+                                "EconomyMongo",
+                                ", "
+                            ],
+                            [
+                                "Economy",
+                                ">"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "leveling",
+                    "description": "Leveling plugin.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "Leveling"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 121,
+                "file": "options.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "CheckerOptions",
+            "description": "Configuration for an 'Economy.utils.checkOptions' method.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "ignoreInvalidTypes",
+                    "description": "Allows the method to ignore the options with invalid types. Default: false.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "ignoreUnspecifiedOptions",
+                    "description": "Allows the method to ignore the unspecified options. Default: false.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "ignoreInvalidOptions",
+                    "description": "Allows the method to ignore the unexisting options. Default: false.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "showProblems",
+                    "description": "Allows the method to show all the problems in the console. Default: false.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "sendLog",
+                    "description": "Allows the method to send the result in the console.\rRequires the 'showProblems' or 'sendLog' options to set. Default: false.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "sendSuccessLog",
+                    "description": "Allows the method to send the result if no problems were found. Default: false.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 132,
+                "file": "options.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IJSONDatabaseOptions",
+            "description": "JSON database configuration.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "path",
+                    "description": "The path to a JSON file.",
+                    "optional": true,
+                    "default": "'./achievements.json'",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "checkingInterval",
+                    "description": "JSON file checking interval (in milliseconds).",
+                    "optional": true,
+                    "default": 5000,
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 145,
+                "file": "options.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "DatabaseType",
+            "description": "Database types.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "MONGODB",
+                    "description": "'MongoDB' database type.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "JSON",
+                    "description": "'JSON' database type.",
+                    "type": [
+                        [
+                            [
+                                "string"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 151,
+                "file": "options.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IBaseAchievementsOptions<IsMongoDBUsed>",
+            "description": "Base achievements configuration object.\r\rType parameters:\r\r- IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "dateLocale",
+                    "description": "The region (example: 'ru'; 'en') to format the date and time.",
+                    "optional": true,
+                    "default": "'en'",
+                    "type": [
+                        [
+                            [
+                                "Intl",
+                                "."
+                            ],
+                            [
+                                "LocalesArgument"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "plugins",
+                    "description": "Achievements plugins to use.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "IAchievementsPlugins",
+                                "<"
+                            ],
+                            [
+                                "IsMongoDBUsed",
+                                ">"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "optionsChecker",
+                    "description": "Configuration for the options checker.",
+                    "optional": true,
+                    "default": "ICheckerOptions",
+                    "type": [
+                        [
+                            [
+                                "ICheckerOptions"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "debug",
+                    "description": "If true, debug mode will be enabled.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 157,
+                "file": "options.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IAchievementsOptions<IsMongoDBUsed>",
+            "description": "Achievements configuration object.\r\rType parameters:\r\r- IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "dateLocale",
+                    "description": "The region (example: 'ru'; 'en') to format the date and time.",
+                    "optional": true,
+                    "default": "'en'",
+                    "type": [
+                        [
+                            [
+                                "Intl",
+                                "."
+                            ],
+                            [
+                                "LocalesArgument"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "plugins",
+                    "description": "Achievements plugins to use.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "IAchievementsPlugins",
+                                "<"
+                            ],
+                            [
+                                "IsMongoDBUsed",
+                                ">"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "optionsChecker",
+                    "description": "Configuration for the options checker.",
+                    "optional": true,
+                    "default": "ICheckerOptions",
+                    "type": [
+                        [
+                            [
+                                "ICheckerOptions"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "debug",
+                    "description": "If true, debug mode will be enabled.",
+                    "optional": true,
+                    "default": false,
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "databaseType",
+                    "description": "The database to use.",
+                    "type": [
+                        [
+                            [
+                                "DatabaseType"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "json",
+                    "description": "JSON database configuration. Required if database type is JSON.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "IJSONDatabaseOptions"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "mongo",
+                    "description": "MongoDB connection data. Required if database type is MongoDB.",
+                    "optional": true,
+                    "type": [
+                        [
+                            [
+                                "MongoConnectionOptions"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 170,
+                "file": "options.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IBaseState",
+            "description": "Base operation status object.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "status",
+                    "description": "Status of the state.",
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "type",
+                    "description": "Type of the state.",
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "message",
+                    "description": "Result message.",
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 20,
+                "file": "status.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "IState",
+            "description": "Operation status object.\r\rType parameters:\r\r- K (string): Property name that will be set on success.\r- V (any): Any value to set.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "status",
+                    "description": "Status of the state.",
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "type",
+                    "description": "Type of the state.",
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "message",
+                    "description": "Result message.",
+                    "type": [
+                        [
+                            [
+                                "boolean"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "achievement",
+                    "description": "Achievement object.",
+                    "type": [
+                        [
+                            [
+                                "Achievement"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 27,
+                "file": "status.interface.ts",
+                "path": "src/types"
+            }
+        },
+        {
+            "name": "StatusCode",
+            "description": "Operation status codes.",
+            "type": [
+                [
+                    [
+                        "object"
+                    ]
+                ]
+            ],
+            "props": [
+                {
+                    "name": "OK",
+                    "description": "Whether the operation was completed successfully.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                },
+                {
+                    "name": "ERROR",
+                    "description": "Whether the operation failed.",
+                    "type": [
+                        [
+                            [
+                                "number"
+                            ]
+                        ]
+                    ]
+                }
+            ],
+            "meta": {
+                "line": 41,
+                "file": "status.interface.ts",
+                "path": "src/types"
+            }
+        }
+    ],
+    "externals": []
 }
