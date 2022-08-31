@@ -12,8 +12,8 @@
     "lint:fix": "eslint --fix ./src",
     "postinstall": "npm run prepare",
     "docgen": "node ./scripts/docgen.js",
-    "babel:install": "npm i @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/preset-env @babel/preset-typescript jsdoc-babel rimraf typescript https://github.com/distubejs/docgen --save-dev",
-    "commitlint:install": "npm i -g @commitlint/cli @commitlint/config-conventiona",
+    "babel:install": "npm i @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/preset-env @babel/preset-typescript jsdoc-babel typescript https://github.com/distubejs/docgen --save-dev",
+    "commitlint:install": "npm i -g @commitlint/cli @commitlint/config-conventional -f",
     "executable": "chmod +x ./.husky/_/husky.sh && chmod +x ./.husky/pre-commit && chmod +x ./.husky/commit-msg",
     "prepublishOnly": "npm run lint:fix && npm run build && npm run docgen"
   },
@@ -69,7 +69,7 @@
   },
   "homepage": "https://github.com/shadowplay1/discord-achievements#readme",
   "devDependencies": {
-    "@babel/core": "^7.18.10",
+    "@babel/core": "^7.18.13",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
     "@babel/preset-env": "^7.18.10",
@@ -78,6 +78,8 @@
     "@distube/docgen": "github:distubejs/docgen",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "husky": "^8.0.1",
-    "jsdoc-babel": "^0.5.0"
+    "jsdoc-babel": "^0.5.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.2"
   }
 }
