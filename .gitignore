@@ -2,7 +2,6 @@
 node_modules/
 
 branches/
-scripts/
 
 lib/
 test/

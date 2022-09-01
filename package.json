@@ -1,6 +1,6 @@
 {
   "name": "discord-achievements",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage, track and earn your achievements in Discord.",
   "main": "lib/src/index.js",
   "types": "./types/src/index.d.ts",
@@ -10,7 +10,6 @@
     "prep": "node ./scripts/prepare.js",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "postinstall": "npm run prepare",
     "docgen": "node ./scripts/docgen.js",
     "babel:install": "npm i @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/preset-env @babel/preset-typescript jsdoc-babel typescript https://github.com/distubejs/docgen --save-dev",
     "commitlint:install": "npm i -g @commitlint/cli @commitlint/config-conventional -f",
