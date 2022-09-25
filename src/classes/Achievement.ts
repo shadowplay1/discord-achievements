@@ -311,7 +311,7 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
     ): Promise<DatabaseProperties<Required<IAchievement<T>>>> {
         const guildToChange = this.achievements.client.guilds.cache.get(this.guildID) as Guild
         const operation = type ? type as any == CompletionPercentageUpdateType.MEMBER_ADD ? - 1 : + 1 : + 0
-        console.log({ operation })
+        // console.log({ operation })
         this.completionPercentage = parseInt(
             (
                 this.completions.length /
@@ -320,11 +320,11 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
             ).toFixed(2)
         )
 
-        console.log((
-            this.completions.length /
-            (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size + operation)
-            * 100
-        ).toFixed(2))//this.completionPercentage)
+        // console.log((
+        //     this.completions.length /
+        //     (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size + operation)
+        //     * 100
+        // ).toFixed(2))//this.completionPercentage)
         const result = await this.update()
         //console.log(result)//.completionPercentage)
         return result
@@ -400,10 +400,10 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
                                 const progressPercent = Math.floor(messagesAmount / achievementTarget * 100)
 
                                 if (achievement.icon == '📨 I') {
-                                    console.log({
-                                        progressToSet: progressPercent,
-                                        achievement: `[${achievement.icon}] ${achievement.name}`
-                                    })
+                                    // console.log({
+                                    //     progressToSet: progressPercent,
+                                    //     achievement: `[${achievement.icon}] ${achievement.name}`
+                                    // })
                                 }
 
                                 if (progressPercent < 100) {
@@ -422,10 +422,10 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
                                 }
 
                                 if (achievement.icon == '📨 I') {
-                                    console.log({
-                                        progressPercent,
-                                        achievement: `[${achievement.icon}] ${achievement.name}`
-                                    })
+                                    // console.log({
+                                    //     progressPercent,
+                                    //     achievement: `[${achievement.icon}] ${achievement.name}`
+                                    // })
                                 }
 
                                 if (progressPercent >= 100) {

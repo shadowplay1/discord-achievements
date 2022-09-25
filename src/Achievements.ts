@@ -377,7 +377,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
 
         this.client.on('guildMemberAdd', async member => {
             const achievements = await this.all(member.guild.id)
-            console.log(1)
+            // console.log(1)
 
             for (const achievement of achievements) {
                 await achievement.update(true)
@@ -386,7 +386,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
 
         this.client.on('guildMemberRemove', async member => {
             const achievements = await this.all(member.guild.id)
-            console.log(2)
+            // console.log(2)
 
             for (const achievement of achievements) {
                 await achievement.update(true)
