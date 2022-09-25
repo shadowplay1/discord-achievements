@@ -180,8 +180,6 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
 
         if (options.databaseType == DatabaseType.JSON) {
             const path = options.json?.path as string
-            console.log(options)
-
             const checkingInterval = options.json?.checkingInterval as number
 
             this._logger.debug('Checking the database file...')
@@ -284,23 +282,26 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
 
         this.client.on('messageCreate', async message => {
             if (this.ready) {
-                this.database.set(`${message?.guild?.id}.${message?.author?.id}.lastMessageChannelID`, message.channel.id)
+                this.database.set(
+                    `${message?.guild?.id}.${message?.author?.id}.lastMessageChannelID`,
+                    message.channel.id
+                )
 
                 if (!message.author.bot) {
+                    const achievements = await this.all(message?.guild?.id as string)
+                    const messageAchievements = achievements.filter(a => a.trackingTarget.type == AchievementType.MESSAGES)
+
                     await this.database.add(`${message?.guild?.id}.${message?.author?.id}.messages`, 1)
 
-                    const allAchievements = await this.all(message?.guild?.id as string)
-                    const achievements = allAchievements.filter(a => a.trackingTarget.type == AchievementType.MESSAGES)
-
-                    for (const achievement of achievements) {
-                        if (!achievement.isCompleted(message.author.id)) {
-                            await achievement.handleProgressUpdate(
-                                AchievementType.MESSAGES,
-                                null,
-                                message.author,
-                                message.channel as TextChannel
-                            )
-                        }
+                    for (const achievement of messageAchievements) {
+                        // console.log({
+                        //     progressInManager: await achievement.progresses.get(message.author.id),
+                        //     achievementName: `[${achievement.icon}] ${achievement.name}`
+                        // })
+                        achievement.handleProgressUpdate(
+                            AchievementType.MESSAGES, null,
+                            message.author, message.channel as TextChannel
+                        )
                     }
                 }
             }
@@ -378,9 +379,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             const achievements = await this.all(member.guild.id)
             console.log(1)
 
-
             for (const achievement of achievements) {
-                await achievement.updateGuildCompletionPercentage()
+                await achievement.update(true)
             }
         })
 
@@ -388,9 +388,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             const achievements = await this.all(member.guild.id)
             console.log(2)
 
-
             for (const achievement of achievements) {
-                await achievement.updateGuildCompletionPercentage()
+                await achievement.update(true)
             }
         })
     }
@@ -496,7 +495,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
         >): Promise<Achievement<T>> {
         const guildID = guild instanceof Guild ? guild?.id : guild
-        const achievements = await this.all<T>(guildID)
+        const achievements = await this.all(guildID)
 
         if (!achievementObject.name) {
             throw new AchievementsError(
@@ -621,7 +620,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
         const achievementObjects = (await this.database.get<IAchievement<T>[]>(`${guildID}.achievements`)) || []
 
         const result = achievementObjects.map(achievementObject => {
-            return new Achievement<T>({
+            return new Achievement({
                 ...achievementObject,
                 guildID
             }, this)
@@ -662,7 +661,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             return null as any
         }
 
-        return new Achievement<T>({
+        return new Achievement({
             ...achievementObject,
             guildID
         }, this)
@@ -727,7 +726,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     public async delete<T extends object = any>(id: number, guild: string | Guild): Promise<Achievement<T>> {
         const guildID = guild instanceof Guild ? guild?.id : guild
 
-        const achievements = await this.all<T>(guildID)
+        const achievements = await this.all(guildID)
 
         const achievement = achievements.find(achievement => achievement.id == id) as Achievement
         const achievementIndex = achievements.findIndex(achievement => achievement.id == id)
