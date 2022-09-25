@@ -16,3 +16,6 @@ achievements.json
 leveling.json
 storage.json
 test.json
+
+*.swp
+*.swo

@@ -4,7 +4,7 @@ import EconomyMongo from 'discord-economy-super/mongodb'
 import Leveling from 'discord-leveling-super'
 
 import { MongoConnectionOptions } from 'quick-mongo-super/typings/interfaces/QuickMongo'
-import { If } from './misc/If'
+import { If } from './misc/If.type'
 
 
 export interface IBaseAchievementsOptions<IsMongoDBUsed extends boolean> {

@@ -22,10 +22,10 @@ export { variables as constants } from './structures/variables.constant'
 
 export { ErrorCodes } from './structures/ErrorCodes'
 
-export { If } from './types/misc/If'
-export { AssignPartialProperty } from './types/misc/AssignPartialProperty'
+export { If } from './types/misc/If.type'
+export { AssignPartialProperty } from './types/misc/AssignPartialProperty.type'
 
-export { CustomAchievementData } from './types/CustomAchievementData'
+export { CustomAchievementData } from './types/customAchievementData.type'
 export { ILoggerColors } from './types/colors.interface'
 
 export {
@@ -44,6 +44,6 @@ export {
 } from './types/options.interface'
 
 export {
-    IBaseState, IState,
+    IBaseState, TypeState,
     StatusCode
 } from './types/status.interface'
