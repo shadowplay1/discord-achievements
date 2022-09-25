@@ -1,6 +1,6 @@
 {
   "name": "discord-achievements",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Manage, track and earn your achievements in Discord.",
   "main": "lib/src/index.js",
   "types": "./types/src/index.d.ts",
