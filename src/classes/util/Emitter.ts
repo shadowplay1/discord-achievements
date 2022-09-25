@@ -7,7 +7,7 @@ const emitter = new EventEmitter({
 
 
 /**
- * Achievements event emitter.
+ * Achievements event emitter class.
  */
 export class Emitter {
 

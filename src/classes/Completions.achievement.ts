@@ -6,12 +6,27 @@ import { ICompletion } from '../types/achievement.interface'
 import { Achievement } from './Achievement'
 import { AchievementsError } from './AchievementsError'
 
+
+/**
+ * Achievement completions manager class.
+ */
 export class Completions {
     public achievement: Achievement
-    public database: DatabaseManager
+    private database: DatabaseManager
 
     constructor(achievement: Achievement) {
+
+        /**
+         * Achievement object that will be edited.
+         * @type {Achievement}
+         */
         this.achievement = achievement
+
+        /**
+         * Database manager.
+         * @type {DatabaseManager}
+         * @private
+         */
         this.database = achievement.achievements.database
     }
 

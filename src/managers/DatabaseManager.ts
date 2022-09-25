@@ -14,23 +14,11 @@ import { DatabaseType, IAchievementsOptions } from '../types/options.interface'
 
 
 /**
- * Database Manager class.
+ * Database manager class.
  */
 export class DatabaseManager {
-
-    /**
-     * MongoDB database connection.
-     * @type {QuickMongo}
-     * @private
-     */
+    public options: IAchievementsOptions<any>
     private mongo: QuickMongo
-
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     * @private
-     */
-    private options: IAchievementsOptions<any>
 
     /**
      * Database manager.

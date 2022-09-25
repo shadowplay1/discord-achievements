@@ -26,75 +26,30 @@ import { MongoConnectionOptions } from 'quick-mongo-super/typings/interfaces/Qui
 
 /**
  * Main Achievements class.
+ *
+ * Type parameters:
+ *
+ * - IsMongoDBUsed (boolean): A boolean value that indicates whether the MongoDB database is used.
+ *
  * @extends {Emitter}
  */
 export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
+    public ready: boolean
 
-    /**
-     * Module version.
-     * @type {string}
-     */
-    public version: string = modulePackage.version
-
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     */
+    public version: string
     public options: IAchievementsOptions<IsMongoDBUsed>
 
-    /**
-     * Module ready state.
-     * @type {boolean}
-     */
-    public ready: boolean = null as any
-
-    /**
-     * JSON database file checking interval.
-     */
-    public interval?: NodeJS.Timer = null as any
-
-    /**
-     * Discord Client.
-     * @type {Client}
-     */
+    public interval?: NodeJS.Timer
     public client: Client<boolean>
 
-    /**
-     * Database Manager.
-     * @type {IAchievementsPlugins<IsMongoDBUsed>}
-     */
-    public plugins: IAchievementsPlugins<IsMongoDBUsed> = {}
+    public plugins: IAchievementsPlugins<IsMongoDBUsed>
 
-    /**
-     * Database Manager.
-     * @type {DatabaseManager}
-     */
     public database: DatabaseManager
-
-    /**
-     * Utils Manager.
-     * @type {UtilsManager}
-     */
-    public utils?: UtilsManager
-
-    /**
-     * MongoDB Connection.
-     * @type {QuickMongo}
-     */
     public mongo: QuickMongo
 
-    /**
-    * Achievements managers list. Made for optimization purposes.
-    * @type {Array<IManager<IsMongoDBUsed>>}
-    * @private
-    */
-    private managers: IManager<IsMongoDBUsed>[] = []
+    public utils?: UtilsManager
 
-    /**
-     * Module logger.
-     * @type {Logger}
-     * @private
-     */
+    private managers: IManager<IsMongoDBUsed>[]
     private _logger: Logger
 
     /**
@@ -105,36 +60,90 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     constructor(client: Client<boolean>, options: IAchievementsOptions<IsMongoDBUsed> = {} as any) {
         super()
 
+        /**
+         * Module ready state.
+         * @type {boolean}
+         */
         this.ready = false
+
+        /**
+         * Module version.
+         * @type {string}
+         */
+        this.version = modulePackage.version
+
+        /**
+         * Discord Client.
+         * @type {Client}
+         */
         this.client = client
 
+        /**
+         * JSON database file checking interval.
+         * @type {NodeJS.Timer}
+         */
+        this.interval = null as any
+
+        /**
+         * Module logger.
+         * @type {Logger}
+         * @private
+         */
         this._logger = new Logger({
             debug: options.debug
         })
+
+        /**
+        * Achievements managers list. Made for optimization purposes.
+        * @type {Array<IManager<IsMongoDBUsed>>}
+        * @private
+        */
+        this.managers = []
 
         if (options.debug) {
             this._logger.debug(`Achievements version: ${this.version}`, 'lightcyan')
         }
 
+        /**
+         * Utils Manager.
+         * @type {UtilsManager}
+         */
         this.utils = new UtilsManager(this, options)
 
+        /**
+         * Module configuration.
+         * @type {IAchievementsOptions}
+         */
         this.options = this.utils.checkOptions(options.optionsChecker, options) as any
+
+        /**
+         * Achievements plugins object.
+         * @type {IAchievementsPlugins<IsMongoDBUsed>}
+         */
         this.plugins = this.options.plugins as IAchievementsPlugins<IsMongoDBUsed>
 
+        /**
+         * Database Manager.
+         * @type {DatabaseManager}
+         */
         this.database = null as any
+
+        /**
+         * MongoDB Connection.
+         * @type {QuickMongo}
+         */
         this.mongo = null as any
 
         this._logger.debug('Achievements starting process launched.')
-
         this.init()
     }
 
     /**
      * Initialize the module.
      * @returns {Promise<void>}
-     * @private
+     * @public
      */
-    private async init(): Promise<void> {
+    public async init(): Promise<void> {
         const options = this.options as any
 
         this._logger.debug('Checking the specified client...')
@@ -171,8 +180,6 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
 
         if (options.databaseType == DatabaseType.JSON) {
             const path = options.json?.path as string
-            console.log(options)
-
             const checkingInterval = options.json?.checkingInterval as number
 
             this._logger.debug('Checking the database file...')
@@ -275,23 +282,26 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
 
         this.client.on('messageCreate', async message => {
             if (this.ready) {
-                this.database.set(`${message?.guild?.id}.${message?.author?.id}.lastMessageChannelID`, message.channel.id)
+                this.database.set(
+                    `${message?.guild?.id}.${message?.author?.id}.lastMessageChannelID`,
+                    message.channel.id
+                )
 
                 if (!message.author.bot) {
+                    const achievements = await this.all(message?.guild?.id as string)
+                    const messageAchievements = achievements.filter(a => a.trackingTarget.type == AchievementType.MESSAGES)
+
                     await this.database.add(`${message?.guild?.id}.${message?.author?.id}.messages`, 1)
 
-                    const allAchievements = await this.all(message?.guild?.id as string)
-                    const achievements = allAchievements.filter(a => a.trackingTarget.type == AchievementType.MESSAGES)
-
-                    for (const achievement of achievements) {
-                        if (!achievement.isCompleted(message.author.id)) {
-                            await achievement.handleProgressUpdate(
-                                AchievementType.MESSAGES,
-                                null,
-                                message.author,
-                                message.channel as TextChannel
-                            )
-                        }
+                    for (const achievement of messageAchievements) {
+                        // console.log({
+                        //     progressInManager: await achievement.progresses.get(message.author.id),
+                        //     achievementName: `[${achievement.icon}] ${achievement.name}`
+                        // })
+                        achievement.handleProgressUpdate(
+                            AchievementType.MESSAGES, null,
+                            message.author, message.channel as TextChannel
+                        )
                     }
                 }
             }
@@ -369,9 +379,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             const achievements = await this.all(member.guild.id)
             console.log(1)
 
-
             for (const achievement of achievements) {
-                await achievement.updateGuildCompletionPercentage()
+                await achievement.update(true)
             }
         })
 
@@ -379,9 +388,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             const achievements = await this.all(member.guild.id)
             console.log(2)
 
-
             for (const achievement of achievements) {
-                await achievement.updateGuildCompletionPercentage()
+                await achievement.update(true)
             }
         })
     }
@@ -427,9 +435,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     /**
      * Destroys the module.
      * @returns {void}
-     * @private
      */
-    private kill(): void {
+    public kill(): void {
         const that: Record<string, any> = this
 
         for (const manager of this.managers) {
@@ -488,7 +495,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
         >): Promise<Achievement<T>> {
         const guildID = guild instanceof Guild ? guild?.id : guild
-        const achievements = await this.all<T>(guildID)
+        const achievements = await this.all(guildID)
 
         if (!achievementObject.name) {
             throw new AchievementsError(
@@ -613,7 +620,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
         const achievementObjects = (await this.database.get<IAchievement<T>[]>(`${guildID}.achievements`)) || []
 
         const result = achievementObjects.map(achievementObject => {
-            return new Achievement<T>({
+            return new Achievement({
                 ...achievementObject,
                 guildID
             }, this)
@@ -654,7 +661,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
             return null as any
         }
 
-        return new Achievement<T>({
+        return new Achievement({
             ...achievementObject,
             guildID
         }, this)
@@ -719,7 +726,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     public async delete<T extends object = any>(id: number, guild: string | Guild): Promise<Achievement<T>> {
         const guildID = guild instanceof Guild ? guild?.id : guild
 
-        const achievements = await this.all<T>(guildID)
+        const achievements = await this.all(guildID)
 
         const achievement = achievements.find(achievement => achievement.id == id) as Achievement
         const achievementIndex = achievements.findIndex(achievement => achievement.id == id)

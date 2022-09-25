@@ -17,31 +17,31 @@ import { AchievementsError } from '../classes/AchievementsError'
  * Utils manager class.
  */
 export class UtilsManager {
-
-    /**
-     * Main Achievements instance.
-     * @type {Achievements}
-     * @private
-     */
-    public achievements: Achievements<any>
-
-    /**
-     * Module configuration.
-     * @type {IAchievementsOptions}
-     */
-    public options: IAchievementsOptions<any>
-
-    /**
-     * Module logger.
-     * @type {Logger}
-     * @private
-     */
+    private achievements: Achievements<any>
     private _logger: Logger
 
+    public options: IAchievementsOptions<any>
+
     constructor(achievements: Achievements<any>, options: IAchievementsOptions<any>) {
+
+        /**
+         * Main Achievements instance.
+         * @type {Achievements}
+         * @private
+         */
         this.achievements = achievements
+
+        /**
+         * Module configuration.
+         * @type {IAchievementsOptions}
+         */
         this.options = options || {}
 
+        /**
+         * Module logger.
+         * @type {Logger}
+         * @private
+         */
         this._logger = new Logger({
             debug: options.debug,
         })

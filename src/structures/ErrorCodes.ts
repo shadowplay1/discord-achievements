@@ -13,3 +13,20 @@ export enum ErrorCodes {
     DATABASE_OPTIONS_MISMATCH = 'DATABASE_OPTIONS_MISMATCH',
     ACHIEVEMENT_NOT_FOUND = 'ACHIEVEMENT_NOT_FOUND'
 }
+
+/**
+ * @typedef {object} ErrorCodes
+ * @prop {string} UNKNOWN_ERROR 'UNKNOWN_ERROR' error code.
+ * @prop {string} INVALID_ERROR_CODE 'INVALID_ERROR_CODE' error code.
+ * @prop {string} INVALID_TYPE 'INVALID_TYPE' error code.
+ * @prop {string} REQUIRED_PARAMETER_MISSING 'REQUIRED_PARAMETER_MISSING' error code.
+ * @prop {string} MODULE_NOT_READY 'MODULE_NOT_READY' error code.
+ * @prop {string} STORAGE_FILE_ERROR 'STORAGE_FILE_ERROR' error code.
+ * @prop {string} NO_CONNECTION_DATA 'NO_CONNECTION_DATA' error code.
+ * @prop {string} INVALID_TARGET_TYPE 'INVALID_TARGET_TYPE' error code.
+ * @prop {string} TARGET_IS_EMPTY 'TARGET_IS_EMPTY error code.
+ * @prop {string} NO_DISCORD_CLIENT 'NO_DISCORD_CLIENT' error code.
+ * @prop {string} CONNECTION_ERROR 'CONNECTION_ERROR' error code.
+ * @prop {string} DATABASE_OPTIONS_MISMATCH 'DATABASE_OPTIONS_MISMATCH' error code.
+ * @prop {string} ACHIEVEMENT_NOT_FOUND 'ACHIEVEMENT_NOT_FOUND' error code.
+ */

@@ -5,12 +5,12 @@ import { Achievements } from '../Achievements'
 
 import {
     AchievementType, IAchievement,
-    IAchievementRequirements, ICompletion
+    IAchievementRequirement, ICompletion
 } from '../types/achievement.interface'
 
-import { CustomAchievementData } from '../types/CustomAchievementData'
+import { CustomAchievementData } from '../types/customAchievementData.type'
 import { AchievementsEvents } from '../types/events.interface'
-import { StatusCode, IState } from '../types/status.interface'
+import { StatusCode, TypeState } from '../types/status.interface'
 
 import { Completions } from './Completions.achievement'
 import { Progresses } from './Progresses.achievement'
@@ -18,120 +18,133 @@ import { Progresses } from './Progresses.achievement'
 
 /**
  * Achievement item class.
+ *
+ * Type parameters:
+ *
+ * - T (object): Optional object that would be stored in `custom` property of the achievement. Default: any.
+ *
+ * @implements {IAchievement<T>}
  */
 export class Achievement<T extends object = any> implements IAchievement<T> {
-
-    /**
-     * Achievements instance.
-     * @type {Achievements}
-     */
     public achievements: Achievements<any>
 
-    /**
-     * Achievement ID.
-     */
     public readonly id: number
-
-    /**
-     * Raw achievement object.
-     */
-    public raw: IAchievement<T>
-
-    /**
-     * Guild ID where the achievement was created.
-     * @type {string}
-     */
     public guildID: string
 
-    /**
-     * Name of the achievement.
-     * @type {string}
-     */
+    public raw: IAchievement<T>
+
     public name: string
-
-    /**
-     * Description of the achievement.
-     * @type {string}
-     */
     public description: string
-
-    /**
-     * Reward for the achievement.
-     * @type {number}
-     */
     public reward: number
 
-    /**
-     * Achievement completions.
-     * @type {ICompletion[]}
-     */
     public completions: ICompletion[]
-
-    /**
-     * Percent of guild members completed the achievement.
-     * @type {number}
-     */
     public completionPercentage: number
 
-    /**
-     * Achievement icon.
-     * @type {number}
-     */
     public icon?: string
 
-    /**
-     * Requirements for the achievement for getting it that would be tracked automatically.
-     * @type {IAchievementRequirements}
-     */
-    public trackingTarget: IAchievementRequirements
-
-    /**
-     * Date when the achievement was created.
-     * @type {string}
-     */
+    public trackingTarget: IAchievementRequirement
     public readonly createdAt: string
 
-    /**
-     * Custom data for the achievement.
-     * @type {CustomAchievementData<T>}
-     */
     public custom: CustomAchievementData<T>
 
-    /**
-     * Achievement progresses manager.
-     * @type {Progresses}
-     */
-    public progresses: Progresses
-
-    /**
-     * Achievement completions manager.
-     * @type {Completions}
-     */
-    public finishedCompletions: Completions
+    public readonly progresses: Progresses
+    public readonly finishedCompletions: Completions
 
 
     constructor(achievementObject: IAchievement<T>, achievements: Achievements<any>) {
+
+        /**
+         * Achievements instance.
+         * @type {Achievements}
+         */
         this.achievements = achievements
+
+        /**
+         * Raw achievement object.
+         * @type {IAchievement<T>}
+         */
         this.raw = achievementObject
 
+        /**
+         * Achievement ID.
+         * @type {number}
+         * @readonly
+         */
         this.id = achievementObject.id
+
+        /**
+         * Guild ID where the achievement was created.
+         * @type {string}
+         */
         this.guildID = achievementObject.guildID
 
+        /**
+         * Name of the achievement.
+         * @type {string}
+         */
         this.name = achievementObject.name
+
+        /**
+         * Description of the achievement.
+         * @type {string}
+         */
         this.description = achievementObject.description
+
+        /**
+         * Reward for the achievement.
+         * @type {number}
+         */
         this.reward = achievementObject.reward
 
+        /**
+         * Achievement completions.
+         * @type {ICompletion[]}
+         */
         this.completions = achievementObject.completions
+
+        /**
+         * Percent of guild members completed the achievement.
+         * @type {number}
+         */
         this.completionPercentage = achievementObject.completionPercentage
 
+        /**
+         * Requirement for the achievement for getting it that would be tracked automatically.
+         * @type {IAchievementRequirement}
+         */
         this.trackingTarget = achievementObject.trackingTarget || {} as any
 
+        /**
+         * Achievement icon.
+         * @type {string}
+         */
         this.icon = achievementObject.icon || null as any
+
+        /**
+         * Date when the achievement was created.
+         * @type {string}
+         * @readonly
+         */
         this.createdAt = achievementObject.createdAt
 
+        /**
+         * Custom data for the achievement.
+         * @type {CustomAchievementData<T>}
+         */
         this.custom = achievementObject.custom || {} as any
 
+        /**
+         * Achievement progresses manager.
+         * @type {Progresses}
+         * @readonly
+         */
         this.progresses = new Progresses(this)
+
+        /**
+         * Achievement completions manager.
+         * @type {Completions}
+         * @readonly
+         */
         this.finishedCompletions = new Completions(this)
     }
 
@@ -139,52 +152,52 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
      * Grants the achievement to a user.
      * @param {string} user User ID to grant the achievement to.
      * @param {string} channel The channel where the achievement was granted in
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    public async grant(user: string, channel: string): Promise<IState<'achievement', Achievement<T>>>
+    public async grant(user: string, channel: string): Promise<TypeState<'achievement', Achievement<T>>>
 
     /**
      * Grants the achievement to a user.
      * @param {GuildMember} user User to grant the achievement to.
      * @param {string} channel The channel where the achievement was granted in.
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    public async grant(user: GuildMember, channel: string): Promise<IState<'achievement', Achievement<T>>>
+    public async grant(user: GuildMember, channel: string): Promise<TypeState<'achievement', Achievement<T>>>
 
     /**
      * Grants the achievement to a user.
      * @param {string} user User ID to grant the achievement to.
      * @param {TextChannel} channel The channel where the achievement was granted in.
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    public async grant(user: string, channel: TextChannel): Promise<IState<'achievement', Achievement<T>>>
+    public async grant(user: string, channel: TextChannel): Promise<TypeState<'achievement', Achievement<T>>>
 
     /**
      * Grants the achievement to a user.
      * @param {string} user User ID to grant the achievement to.
      * @param {TextChannel} channel The channel where the achievement was granted in
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    public async grant(user: GuildMember, channel: TextChannel): Promise<IState<'achievement', Achievement<T>>>
+    public async grant(user: GuildMember, channel: TextChannel): Promise<TypeState<'achievement', Achievement<T>>>
 
     /**
      * Grants the achievement to a user.
      * @param {GuildMember} user User to grant the achievement to.
      * @param {string} channel The channel where the achievement was granted in.
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    public async grant(user: GuildMember, channel: string): Promise<IState<'achievement', Achievement<T>>>
+    public async grant(user: GuildMember, channel: string): Promise<TypeState<'achievement', Achievement<T>>>
 
     /**
      * Grants the achievement to a user.
      * @param {string | GuildMember} user User to grant the achievement to.
      * @param {string | TextChannel} channel The channel where the achievement was granted in
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
     public async grant(
         user: string | GuildMember,
         channel: string | TextChannel
-    ): Promise<IState<'achievement', Achievement<T>>> {
+    ): Promise<TypeState<'achievement', Achievement<T>>> {
         const userID = user instanceof GuildMember ? user.id : user
         const channelID = channel instanceof TextChannel ? channel.id : channel
 
@@ -210,14 +223,6 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
 
         this.completions.push(userCompletion)
         this.progresses.set(userID, 100)
-
-        this.completionPercentage = parseInt(
-            (
-                this.completions.length /
-                (guild.memberCount - guild.members.cache.filter(m => m.user.bot).size)
-                * 100
-            ).toFixed(2)
-        )
 
         await this.update(true)
 
@@ -266,7 +271,7 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
 
     /**
      * Updates the achievement in database.
-     * @param {boolean} updateCompletionPercent
+     * @param {boolean} [updateCompletionPercent=false]
      * If true, percent of the guild members why completed the achievement will be updated.
      * @returns {Promise<DatabaseProperties<Required<IAchievement<T>>>>}
      */
@@ -293,6 +298,7 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
             achievementObject
         )
 
+        //console.log(achievementObject)
         return result
     }
 
@@ -305,26 +311,22 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
     ): Promise<DatabaseProperties<Required<IAchievement<T>>>> {
         const guildToChange = this.achievements.client.guilds.cache.get(this.guildID) as Guild
         const operation = type ? type as any == CompletionPercentageUpdateType.MEMBER_ADD ? - 1 : + 1 : + 0
-
+        console.log({ operation })
         this.completionPercentage = parseInt(
             (
                 this.completions.length /
-                (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size) + operation
+                (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size + operation)
                 * 100
             ).toFixed(2)
         )
 
-        console.log({
-            percent: parseInt(
-                (
-                    this.completions.length /
-                    (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size) + operation
-                    * 100
-                ).toFixed(2)
-            )
-        })
-
+        console.log((
+            this.completions.length /
+            (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size + operation)
+            * 100
+        ).toFixed(2))//this.completionPercentage)
         const result = await this.update()
+        //console.log(result)//.completionPercentage)
         return result
     }
 
@@ -350,7 +352,7 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
     public async delete(guild: string | Guild): Promise<Achievement<T>> {
         const guildID = guild instanceof Guild ? guild?.id : guild
 
-        const achievements = await this.achievements.all<T>(guildID)
+        const achievements = await this.achievements.all(guildID)
         const achievementIndex = achievements.findIndex(achievement => achievement.id == this.id)
 
         await this.achievements.database.pop(`${guildID}.achievements`, achievementIndex)
@@ -379,6 +381,8 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
         const guild = this.achievements.client.guilds.cache.get(this.guildID)
 
         if (!author.bot) {
+            const member = guild?.members.cache.get(author?.id)
+
             switch (achievementType) {
                 case AchievementType.MESSAGES:
                     const messageAchievements = achievements
@@ -394,22 +398,38 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
                                 ) || 0
 
                                 const progressPercent = Math.floor(messagesAmount / achievementTarget * 100)
-                                const progress = await achievement.progresses.set(author.id, progressPercent)
 
-                                const member = guild?.members.cache.get(author?.id)
+                                if (achievement.icon == '📨 I') {
+                                    console.log({
+                                        progressToSet: progressPercent,
+                                        achievement: `[${achievement.icon}] ${achievement.name}`
+                                    })
+                                }
 
-                                this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
-                                    guild: guild as Guild,
-                                    user: member as GuildMember,
-                                    achievement,
+                                if (progressPercent < 100) {
+                                    const progress = await achievement.progresses.set(
+                                        author.id,
+                                        progressPercent
+                                    )
 
-                                    ...progress
-                                })
+                                    this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
+                                        guild: guild as Guild,
+                                        user: member as GuildMember,
+                                        achievement,
 
-                                if (progressPercent >= 100 && !achievement.isCompleted(author.id)) {
+                                        ...progress
+                                    })
+                                }
 
+                                if (achievement.icon == '📨 I') {
+                                    console.log({
+                                        progressPercent,
+                                        achievement: `[${achievement.icon}] ${achievement.name}`
+                                    })
+                                }
+
+                                if (progressPercent >= 100) {
                                     await achievement.grant(member as GuildMember, channel)
-                                    await achievement.update()
                                 }
                             }
                         }
@@ -428,21 +448,21 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
                                 const levels = plugins.leveling?.levels.get(author.id, this.guildID) || 0
 
                                 const progressPercent = Math.floor(levels / achievementTarget * 100)
-                                const progress = await achievement.progresses.set(data.user.id, progressPercent)
 
-                                const guild = client.guilds?.cache?.get(data.guildID)
-                                const member = guild?.members.cache.get(data.user.id)
+                                if (progressPercent < 100) {
+                                    const progress = await achievement.progresses.set(data.user.id, progressPercent)
+                                    const guild = client.guilds?.cache?.get(data.guildID)
 
-                                this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
-                                    guild: guild as Guild,
-                                    user: member as GuildMember,
-                                    achievement,
-                                    ...progress
-                                })
+                                    this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
+                                        guild: guild as Guild,
+                                        user: member as GuildMember,
+                                        achievement,
+                                        ...progress
+                                    })
+                                }
 
                                 if (progressPercent >= 100) {
                                     await achievement.grant(member as GuildMember, channel)
-                                    await achievement.update()
                                 }
                             }
                         }
@@ -459,23 +479,22 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
 
                             if (!achievement.isCompleted(data.userID)) {
                                 const xp = data.totalXP - data.gainedXP
-
                                 const progressPercent = Math.floor(xp / achievementTarget * 100)
-                                const progress = await achievement.progresses.set(data.userID, progressPercent)
 
-                                const guild = client.guilds?.cache?.get(data.guildID)
-                                const member = guild?.members.cache.get(data.userID)
+                                if (progressPercent < 100) {
+                                    const progress = await achievement.progresses.set(data.userID, progressPercent)
+                                    const guild = client.guilds?.cache?.get(data.guildID)
 
-                                this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
-                                    guild: guild as Guild,
-                                    user: member as GuildMember,
-                                    achievement,
-                                    ...progress
-                                })
+                                    this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
+                                        guild: guild as Guild,
+                                        user: member as GuildMember,
+                                        achievement,
+                                        ...progress
+                                    })
+                                }
 
                                 if (progressPercent >= 100) {
                                     await achievement.grant(member as GuildMember, channel)
-                                    await achievement.update()
                                 }
                             }
                         }
@@ -492,24 +511,24 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
 
                             if (!achievement.isCompleted(data.memberID)) {
                                 const balance = data.balance
-
                                 const progressPercent = Math.floor(balance / achievementTarget * 100)
-                                const progress = await achievement.progresses.set(data.memberID, progressPercent)
 
-                                const guild = client.guilds?.cache?.get(data.guildID)
-                                const member = guild?.members.cache.get(data.memberID)
+                                if (progressPercent < 100) {
+                                    const progress = await achievement.progresses.set(data.memberID, progressPercent)
+                                    const guild = client.guilds?.cache?.get(data.guildID)
 
-                                this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
-                                    guild: guild as Guild,
-                                    user: member as GuildMember,
-                                    achievement,
-                                    ...progress
-                                })
+                                    this.achievements.emit(AchievementsEvents.ACHIEVEMENT_PROGRESS, {
+                                        guild: guild as Guild,
+                                        user: member as GuildMember,
+                                        achievement,
+                                        ...progress
+                                    })
+                                }
 
                                 if (progressPercent >= 100) {
                                     await achievement.grant(member as GuildMember, channel)
-                                    await achievement.update()
                                 }
+
                             }
                         }
                     }
@@ -520,7 +539,9 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
 
     /**
      * Handles a progress updates for the specified achievement types.
-     * @param {AchievementType[]} achievementTypes Achievement types to check.
+     * @param {any[]} achievementData
+     * An array of 2-elements arrays of achievement types to check and data to pass in for each achievement type.
+     *
      * @param {User} author Message author object.
      * @param {TextChannel} channel Text channel object.
      * @returns {Promise<void>}
@@ -540,3 +561,9 @@ export enum CompletionPercentageUpdateType {
     MEMBER_ADD = 0,
     MEMBER_REMOVE = 1
 }
+
+/**
+ * @typedef {object} CompletionPercentageUpdateType
+ * @prop {number} MEMBER_ADD Member add completion percentage update type.
+ * @prop {number} MEMBER_REMOVE Member remove completion percentage update type.
+ */

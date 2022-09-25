@@ -6,12 +6,27 @@ import { IProgression } from '../types/achievement.interface'
 import { Achievement } from './Achievement'
 import { AchievementsError } from './AchievementsError'
 
+
+/**
+ * Achievement progressions manager class.
+ */
 export class Progresses {
     public achievement: Achievement
-    public database: DatabaseManager
+    private database: DatabaseManager
 
     constructor(achievement: Achievement) {
+
+        /**
+         * Achievement object that will be edited.
+         * @type {Achievement}
+         */
         this.achievement = achievement
+
+        /**
+         * Database manager.
+         * @type {DatabaseManager}
+         * @private
+         */
         this.database = achievement.achievements.database
     }
 
@@ -51,16 +66,17 @@ export class Progresses {
             const progressObject: IProgression = {
                 achievementID: this.achievement.id,
                 achievementName: this.achievement.name,
+                achievementIcon: this.achievement.icon,
                 progress: value
             }
 
-            await this.database.push<IProgression>(`${this.achievement.guildID}.${userID}.progresses`, progressObject)
+            this.database.push<IProgression>(`${this.achievement.guildID}.${userID}.progresses`, progressObject)
             return progressObject
         }
 
         achievementProgress.progress = value
 
-        await this.database.pull(
+        this.database.pull(
             `${this.achievement.guildID}.${userID}.progresses`,
             achievementProgressIndex,
             achievementProgress
@@ -74,14 +90,14 @@ export class Progresses {
      * @param {string} user
      * @returns {Promise<IProgression>} The updated progression object.
      */
-    public async reset(user: string, value: number): Promise<IProgression>
+    public async reset(user: string): Promise<IProgression>
 
     /**
      * Resets the progress of the achievement for the specified user.
      * @param {GuildMember} user
      * @returns {Promise<IProgression>} The updated progression object.
      */
-    public async reset(user: GuildMember, value: number): Promise<IProgression>
+    public async reset(user: GuildMember): Promise<IProgression>
 
     /**
      * Resets the progress of the achievement for the specified user.
@@ -146,6 +162,7 @@ export class Progresses {
         return achievementProgress || {
             achievementID: this.achievement.id,
             achievementName: this.achievement.name,
+            achievementIcon: this.achievement.icon,
             progress: 0
         }
     }
