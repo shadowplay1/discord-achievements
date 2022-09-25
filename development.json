@@ -2,7 +2,7 @@
  "meta": {
   "generator": "0.11.1",
   "format": 22,
-  "date": 1661990306436
+  "date": 1664071365825
  },
  "custom": {
   "general": {
@@ -297,7 +297,7 @@
       ]
      ],
      "meta": {
-      "line": 398,
+      "line": 397,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -313,7 +313,7 @@
       ]
      ],
      "meta": {
-      "line": 436,
+      "line": 435,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -376,7 +376,7 @@
       "description": "The created achievement."
      },
      "meta": {
-      "line": 484,
+      "line": 483,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -444,7 +444,7 @@
       "description": "The created achievements array."
      },
      "meta": {
-      "line": 575,
+      "line": 574,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -495,7 +495,7 @@
       "description": "The achievements array."
      },
      "meta": {
-      "line": 614,
+      "line": 613,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -553,7 +553,7 @@
       "description": "The achievement object."
      },
      "meta": {
-      "line": 649,
+      "line": 648,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -607,7 +607,7 @@
       "description": "The achievement object."
      },
      "meta": {
-      "line": 687,
+      "line": 686,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -665,7 +665,7 @@
       "description": "Deleted achievement object."
      },
      "meta": {
-      "line": 721,
+      "line": 720,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -800,7 +800,7 @@
       }
      ],
      "meta": {
-      "line": 753,
+      "line": 752,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -809,7 +809,7 @@
      "name": "destroy",
      "description": "Emits when the module is destroyed.",
      "meta": {
-      "line": 759,
+      "line": 758,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -836,7 +836,7 @@
       }
      ],
      "meta": {
-      "line": 764,
+      "line": 763,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -858,7 +858,7 @@
       }
      ],
      "meta": {
-      "line": 770,
+      "line": 769,
       "file": "Achievements.ts",
       "path": "src"
      }
@@ -1193,7 +1193,7 @@
          "<"
         ],
         [
-         "IState",
+         "TypeState",
          "<'"
         ],
         [
@@ -1250,7 +1250,7 @@
       "description": "Whether the achievement is completed by the user."
      },
      "meta": {
-      "line": 266,
+      "line": 258,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1262,6 +1262,7 @@
       {
        "name": "updateCompletionPercent",
        "description": "If true, percent of the guild members why completed the achievement will be updated.",
+       "optional": true,
        "default": false,
        "type": [
         [
@@ -1298,7 +1299,7 @@
       ]
      ],
      "meta": {
-      "line": 280,
+      "line": 272,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1332,7 +1333,7 @@
       ]
      ],
      "meta": {
-      "line": 312,
+      "line": 305,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1379,7 +1380,7 @@
       "description": "Deleted achievement object."
      },
      "meta": {
-      "line": 358,
+      "line": 347,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1436,7 +1437,7 @@
       ]
      ],
      "meta": {
-      "line": 373,
+      "line": 362,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1446,8 +1447,8 @@
      "description": "Handles a progress updates for the specified achievement types.",
      "params": [
       {
-       "name": "achievementTypes",
-       "description": "Achievement types to check.",
+       "name": "achievementData",
+       "description": "An array of 2-elements arrays of achievement types to check and data to pass in for each achievement type.",
        "type": [
         [
          [
@@ -1455,7 +1456,7 @@
           "<"
          ],
          [
-          "AchievementType",
+          "any",
           ">"
          ]
         ]
@@ -1498,7 +1499,7 @@
       ]
      ],
      "meta": {
-      "line": 534,
+      "line": 540,
       "file": "Achievement.ts",
       "path": "src/classes"
      }
@@ -1924,7 +1925,7 @@
       "description": "The updated progression object."
      },
      "meta": {
-      "line": 101,
+      "line": 102,
       "file": "Progresses.achievement.ts",
       "path": "src/classes"
      }
@@ -1967,7 +1968,7 @@
       "description": "The updated progression object."
      },
      "meta": {
-      "line": 148,
+      "line": 149,
       "file": "Progresses.achievement.ts",
       "path": "src/classes"
      }
@@ -2010,7 +2011,7 @@
       "description": "The updated progression object."
      },
      "meta": {
-      "line": 182,
+      "line": 184,
       "file": "Progresses.achievement.ts",
       "path": "src/classes"
      }
@@ -2053,7 +2054,7 @@
       "description": "The updated progression object."
      },
      "meta": {
-      "line": 227,
+      "line": 229,
       "file": "Progresses.achievement.ts",
       "path": "src/classes"
      }
@@ -3245,7 +3246,7 @@
     }
    ],
    "meta": {
-    "line": 557,
+    "line": 565,
     "file": "Achievement.ts",
     "path": "src/classes"
    }
@@ -3624,7 +3625,7 @@
     }
    ],
    "meta": {
-    "line": 173,
+    "line": 178,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3698,7 +3699,7 @@
     }
    ],
    "meta": {
-    "line": 195,
+    "line": 200,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3749,7 +3750,7 @@
     }
    ],
    "meta": {
-    "line": 204,
+    "line": 209,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3811,7 +3812,7 @@
     }
    ],
    "meta": {
-    "line": 211,
+    "line": 216,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3862,7 +3863,7 @@
     }
    ],
    "meta": {
-    "line": 219,
+    "line": 224,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3878,7 +3879,7 @@
     ]
    ],
    "meta": {
-    "line": 226,
+    "line": 231,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3940,7 +3941,7 @@
     }
    ],
    "meta": {
-    "line": 235,
+    "line": 240,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -3980,7 +3981,7 @@
     }
    ],
    "meta": {
-    "line": 243,
+    "line": 248,
     "file": "achievement.interface.ts",
     "path": "src/types"
    }
@@ -4463,7 +4464,7 @@
    }
   },
   {
-   "name": "IState",
+   "name": "TypeState",
    "description": "Operation status object.\r\rType parameters:\r\r- K (string): Property name that will be set on success.\r- V (any): Any value to set.",
    "type": [
     [
