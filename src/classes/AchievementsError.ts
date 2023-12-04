@@ -11,7 +11,6 @@ export class AchievementsError extends Error {
 
     constructor(message: string, code?: ErrorCodes) {
         super(message || 'Unknown Error')
-        Error.captureStackTrace(this, this.constructor)
 
         if (!message) {
             code = ErrorCodes.INVALID_ERROR_CODE

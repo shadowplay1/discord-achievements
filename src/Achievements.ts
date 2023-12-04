@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 
 import { Client, Guild, TextChannel, User } from 'discord.js'
-import QuickMongo from 'quick-mongo-super'
+import { Mongo, IMongoConnectionOptions } from 'quick-mongo-super/MongoItems'
 
 import { AchievementsError } from './classes/AchievementsError'
 import { Emitter } from './classes/util/Emitter'
@@ -9,19 +9,20 @@ import { Emitter } from './classes/util/Emitter'
 import { DatabaseManager } from './managers/DatabaseManager'
 import { UtilsManager } from './managers/UtilsManager'
 
+import { RestOrArray } from './types/misc/RestOrArray.type'
+
 import { ErrorCodes } from './structures/ErrorCodes'
 import { errors } from './structures/errors.constant'
 
 import { DatabaseType, IAchievementsOptions, IAchievementsPlugins } from './types/options.interface'
 import { Logger } from './classes/util/Logger'
 
-import modulePackage from '../package.json'
+import packageJSON from '../package.json'
 
 import { AchievementsEvents, IAchievementsEvents } from './types/events.interface'
 import { AchievementType, IAchievement } from './types/achievement.interface'
 
 import { Achievement } from './classes/Achievement'
-import { MongoConnectionOptions } from 'quick-mongo-super/typings/interfaces/QuickMongo'
 
 
 /**
@@ -45,7 +46,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     public plugins: IAchievementsPlugins<IsMongoDBUsed>
 
     public database: DatabaseManager
-    public mongo: QuickMongo
+    public mongo: Mongo<any, any>
 
     public utils?: UtilsManager
 
@@ -70,7 +71,7 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
          * Module version.
          * @type {string}
          */
-        this.version = modulePackage.version
+        this.version = packageJSON.version
 
         /**
          * Discord Client.
@@ -217,8 +218,8 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
         if (options.databaseType == DatabaseType.MONGODB) {
             const connectionStartDate = Date.now()
 
-            const mongo = options.mongo as Partial<MongoConnectionOptions>
-            const db = new QuickMongo(mongo as MongoConnectionOptions)
+            const mongo = options.mongo as Partial<IMongoConnectionOptions>
+            const db = new Mongo<any, any>(mongo as IMongoConnectionOptions)
 
             if (!mongo.connectionURI) {
                 throw new AchievementsError(errors.noConnectionData, ErrorCodes.NO_CONNECTION_DATA)
@@ -453,47 +454,41 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     /**
     * Create a new achievement.
     * @param {string} guild The guild to create the achievement in.
-    * @param {IAchievement<T>} achievementObject The achievement's name.
+    * @param {IAchievement<T>} achievementObject Achievement name.
     * @returns {Promise<Achievement<T>>} The created achievement.
     */
     public async create<
         T extends object = any
     >(
         guild: string,
-        achievementObject: Omit<
-            IAchievement<T>,
-            'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
-        >): Promise<Achievement<T>>
+        achievementObject: AchievementObject<T>
+    ): Promise<Achievement<T>>
 
     /**
     * Create a new achievement.
     * @param {Guild} guild The guild to create the achievement in.
-    * @param {IAchievement<T>} achievementObject The achievement's name.
+    * @param {IAchievement<T>} achievementObject Achievement name.
     * @returns {Promise<Achievement<T>>} The created achievement.
     */
     public async create<
         T extends object = any
     >(
         guild: Guild,
-        achievementObject: Omit<
-            IAchievement<T>,
-            'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
-        >): Promise<Achievement<T>>
+        achievementObject: AchievementObject<T>
+    ): Promise<Achievement<T>>
 
     /**
     * Create a new achievement.
     * @param {string | Guild} guild The guild to create the achievement in.
-    * @param {IAchievement<T>} achievementObject The achievement's name.
+    * @param {IAchievement<T>} achievementObject Achievement name.
     * @returns {Promise<Achievement<T>>} The created achievement.
     */
     public async create<
         T extends object = any
     >(
         guild: string | Guild,
-        achievementObject: Omit<
-            IAchievement<T>,
-            'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
-        >): Promise<Achievement<T>> {
+        achievementObject: AchievementObject<T>
+    ): Promise<Achievement<T>> {
         const guildID = guild instanceof Guild ? guild?.id : guild
         const achievements = await this.all(guildID)
 
@@ -542,54 +537,47 @@ export class Achievements<IsMongoDBUsed extends boolean> extends Emitter {
     }
 
     /**
-    * Create a new achievement.
-    * @param {string} guild The guild to create the achievement in.
-    * @param {IAchievement<T>} achievementObjects The achievement's name.
-    * @returns {Promise<Array<Achievement<T>>>} The created achievements array.
-    */
+     * Create a new achievement.
+     * @param {string} guild The guild to create the achievement in.
+     * @param {RestOrArray<AchievementObject<T>>} achievementObjects Achievement name.
+     * @returns {Promise<Array<Achievement<T>>>} The created achievements array.
+     */
     public async createMany<
         T extends object = any
     >(
         guild: string,
-        ...achievementObjects: Omit<
-            IAchievement<T>,
-            'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
-        >[]): Promise<Achievement<T>[]>
+        ...achievementObjects: RestOrArray<AchievementObject<T>>
+    ): Promise<Achievement<T>[]>
 
     /**
-    * Create a new achievement.
-    * @param {Guild} guild The guild to create the achievement in.
-    * @param {IAchievement<T>} achievementObjects The achievement's name.
-    * @returns {Promise<Array<Achievement<T>>>} The created achievements array.
-    */
+     * Create a new achievement.
+     * @param {Guild} guild The guild to create the achievement in.
+     * @param {RestOrArray<AchievementObject<T>>} achievementObjects Achievement name.
+     * @returns {Promise<Array<Achievement<T>>>} The created achievements array.
+     */
     public async createMany<
         T extends object = any
     >(
         guild: Guild,
-        ...achievementObjects: Omit<
-            IAchievement<T>,
-            'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
-        >[]): Promise<Achievement<T>[]>
+        ...achievementObjects: RestOrArray<AchievementObject<T>>
+    ): Promise<Achievement<T>[]>
 
     /**
-    * Create a new achievement.
-    * @param {string | Guild} guild The guild to create the achievement in.
-    * @param {IAchievement<T>} achievementObjects The achievement's name.
-    * @returns {Promise<Array<Achievement<T>>>} The created achievements array.
-    */
-    public async createMany<
-        T extends object = any
-    >(guild: string | Guild,
-        ...achievementObjects: Omit<
-            IAchievement<T>,
-            'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
-        >[]): Promise<Achievement<T>[]> {
+     * Create a new achievement.
+     * @param {string | Guild} guild The guild to create the achievement in.
+     * @param {RestOrArray<AchievementObject<T>>} achievementObjects Achievement name.
+     * @returns {Promise<Array<Achievement<T>>>} The created achievements array.
+     */
+    public async createMany<T extends object = any>(
+        guild: string | Guild,
+        ...achievementObjects: RestOrArray<AchievementObject<T>>
+    ): Promise<Achievement<T>[]> {
         const guildID = guild instanceof Guild ? guild?.id : guild
         const createdAchievements: Achievement<T>[] = []
 
-        for await (const achievementObject of achievementObjects) {
+        for (const achievementObject of achievementObjects) {
             createdAchievements.push(
-                await this.create(guildID, achievementObject)
+                await this.create(guildID as string, achievementObject as Achievement<T>)
             )
         }
 
@@ -771,3 +759,8 @@ export interface IManager<IsMongoDBUsed extends boolean> {
  * @event Achievements#achievementComplete
  * @param {ICompletion} completionData Completion data object.
  */
+
+export type AchievementObject<T extends object> = Omit<
+    IAchievement<T>,
+    'id' | 'guildID' | 'createdAt' | 'completions' | 'completionPercentage'
+>

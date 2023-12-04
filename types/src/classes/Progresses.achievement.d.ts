@@ -27,13 +27,13 @@ export declare class Progresses {
      * @param {string} user
      * @returns {Promise<IProgression>} The updated progression object.
      */
-    reset(user: string, value: number): Promise<IProgression>;
+    reset(user: string): Promise<IProgression>;
     /**
      * Resets the progress of the achievement for the specified user.
      * @param {GuildMember} user
      * @returns {Promise<IProgression>} The updated progression object.
      */
-    reset(user: GuildMember, value: number): Promise<IProgression>;
+    reset(user: GuildMember): Promise<IProgression>;
     /**
      * Gets the specified user's progression towards the achievement.
      * @param {string} user The user ID to get the progression of.

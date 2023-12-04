@@ -3,7 +3,7 @@ import EconomyMongo from 'discord-economy-super/mongodb'
 
 import Leveling from 'discord-leveling-super'
 
-import { MongoConnectionOptions } from 'quick-mongo-super/typings/interfaces/QuickMongo'
+import { IMongoConnectionOptions } from 'quick-mongo-super/MongoItems'
 import { If } from './misc/If.type'
 
 
@@ -42,7 +42,7 @@ export type IAchievementsOptions<IsMongoDBUsed extends boolean> = If<
         /**
          * MongoDB connection options. Required if databaseType is MongoDB.
          */
-        mongo: MongoConnectionOptions
+        mongo: IMongoConnectionOptions
     },
 
     IBaseAchievementsOptions<IsMongoDBUsed> & {

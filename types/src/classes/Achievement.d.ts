@@ -1,9 +1,9 @@
 import { Guild, GuildMember, TextChannel, User } from 'discord.js';
-import { DatabaseProperties } from 'quick-mongo-super/typings/interfaces/QuickMongo';
+import { DatabaseProperties } from 'quick-mongo-super/MongoItems';
 import { Achievements } from '../Achievements';
 import { AchievementType, IAchievement, IAchievementRequirement, ICompletion } from '../types/achievement.interface';
-import { CustomAchievementData } from '../types/CustomAchievementData';
-import { IState } from '../types/status.interface';
+import { CustomAchievementData } from '../types/customAchievementData.type';
+import { TypeState } from '../types/status.interface';
 import { Completions } from './Completions.achievement';
 import { Progresses } from './Progresses.achievement';
 /**
@@ -36,37 +36,37 @@ export declare class Achievement<T extends object = any> implements IAchievement
      * Grants the achievement to a user.
      * @param {string} user User ID to grant the achievement to.
      * @param {string} channel The channel where the achievement was granted in
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    grant(user: string, channel: string): Promise<IState<'achievement', Achievement<T>>>;
+    grant(user: string, channel: string): Promise<TypeState<'achievement', Achievement<T>>>;
     /**
      * Grants the achievement to a user.
      * @param {GuildMember} user User to grant the achievement to.
      * @param {string} channel The channel where the achievement was granted in.
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    grant(user: GuildMember, channel: string): Promise<IState<'achievement', Achievement<T>>>;
+    grant(user: GuildMember, channel: string): Promise<TypeState<'achievement', Achievement<T>>>;
     /**
      * Grants the achievement to a user.
      * @param {string} user User ID to grant the achievement to.
      * @param {TextChannel} channel The channel where the achievement was granted in.
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    grant(user: string, channel: TextChannel): Promise<IState<'achievement', Achievement<T>>>;
+    grant(user: string, channel: TextChannel): Promise<TypeState<'achievement', Achievement<T>>>;
     /**
      * Grants the achievement to a user.
      * @param {string} user User ID to grant the achievement to.
      * @param {TextChannel} channel The channel where the achievement was granted in
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    grant(user: GuildMember, channel: TextChannel): Promise<IState<'achievement', Achievement<T>>>;
+    grant(user: GuildMember, channel: TextChannel): Promise<TypeState<'achievement', Achievement<T>>>;
     /**
      * Grants the achievement to a user.
      * @param {GuildMember} user User to grant the achievement to.
      * @param {string} channel The channel where the achievement was granted in.
-     * @returns {Promise<IState<'achievement', Achievement<T>>>} The granted achievement.
+     * @returns {Promise<TypeState<'achievement', Achievement<T>>>} The granted achievement.
      */
-    grant(user: GuildMember, channel: string): Promise<IState<'achievement', Achievement<T>>>;
+    grant(user: GuildMember, channel: string): Promise<TypeState<'achievement', Achievement<T>>>;
     /**
      * Whether the achievement is completed by a user.
      * @param {string}user User ID to check.
@@ -81,7 +81,7 @@ export declare class Achievement<T extends object = any> implements IAchievement
     isCompleted(user: GuildMember): boolean;
     /**
      * Updates the achievement in database.
-     * @param {boolean} updateCompletionPercent
+     * @param {boolean} [updateCompletionPercent=false]
      * If true, percent of the guild members why completed the achievement will be updated.
      * @returns {Promise<DatabaseProperties<Required<IAchievement<T>>>>}
      */
@@ -113,7 +113,9 @@ export declare class Achievement<T extends object = any> implements IAchievement
     handleProgressUpdate(achievementType: AchievementType, data: any, author: User, channel: TextChannel): Promise<void>;
     /**
      * Handles a progress updates for the specified achievement types.
-     * @param {AchievementType[]} achievementTypes Achievement types to check.
+     * @param {any[]} achievementData
+     * An array of 2-elements arrays of achievement types to check and data to pass in for each achievement type.
+     *
      * @param {User} author Message author object.
      * @param {TextChannel} channel Text channel object.
      * @returns {Promise<void>}

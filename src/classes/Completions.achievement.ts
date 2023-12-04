@@ -1,11 +1,14 @@
 import { GuildMember } from 'discord.js'
+
 import { DatabaseManager } from '../managers/DatabaseManager'
+
 import { ErrorCodes } from '../structures/ErrorCodes'
 import { errors } from '../structures/errors.constant'
+
 import { ICompletion } from '../types/achievement.interface'
+
 import { Achievement } from './Achievement'
 import { AchievementsError } from './AchievementsError'
-
 
 /**
  * Achievement completions manager class.

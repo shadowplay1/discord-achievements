@@ -13,5 +13,4 @@ leveling.json
 storage.json
 test.json
 
-*.swp
-*.swo
+*.sw[nop]

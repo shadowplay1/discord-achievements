@@ -2,7 +2,7 @@ export type AssignPartialProperty<T, K extends string | number | symbol, V> = T 
 
 
 /**
- * @typedef {object} AssignPartialProperty Assigns a new property to a type.
+ * @typedef {object} AssignPartialProperty<T,K,V> Assigns a new property to a type.
  *
  * Type parameters:
  *

@@ -1,10 +1,10 @@
-import { AssignPartialProperty } from './misc/AssignPartialProperty';
+import { AssignPartialProperty } from './misc/AssignPartialProperty.type';
 export interface IBaseState {
     status: boolean;
     type: StatusCode;
     message: string;
 }
-export declare type IState<K extends string | number | symbol, V = any> = AssignPartialProperty<IBaseState, K, V>;
+export declare type TypeState<K extends string | number | symbol, V = any> = AssignPartialProperty<IBaseState, K, V>;
 export declare enum StatusCode {
     OK = 0,
     ERROR = 1
@@ -16,7 +16,7 @@ export declare enum StatusCode {
  * @prop {boolean} message Result message.
  */
 /**
- * @typedef {object} IState Operation status object.
+ * @typedef {object} TypeState Operation status object.
  *
  * Type parameters:
  *

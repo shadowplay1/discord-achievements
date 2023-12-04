@@ -2,10 +2,10 @@ import { Achievements } from '../Achievements'
 import { ICompletionEvent, IProgression } from './achievement.interface'
 
 export interface IAchievementsEvents {
-    ready: Achievements<any>
-    destroy: void
-    achievementComplete: ICompletionEvent
-    achievementProgress: IProgression<true>
+    ready: [achievements: Achievements<any>]
+    destroy: [voidPAram: void]
+    achievementComplete: [achievementCompletionEvent: ICompletionEvent]
+    achievementProgress: [achievementProgresssionEvent: IProgression<true>]
 }
 
 export enum AchievementsEvents {

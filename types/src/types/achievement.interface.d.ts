@@ -1,7 +1,7 @@
 import { Guild, GuildMember, TextChannel } from 'discord.js';
-import { If } from '../types/misc/If';
+import { If } from './misc/If.type';
 import { Achievement } from '../classes/Achievement';
-import { CustomAchievementData } from './CustomAchievementData';
+import { CustomAchievementData } from './customAchievementData.type';
 export interface IAchievement<T extends object = any> {
     /**
      * Achievement ID.
@@ -79,6 +79,10 @@ export interface IBaseProgression {
      * Achievement name.
      */
     achievementName: string;
+    /**
+     * Achievement icon.
+     */
+    achievementIcon?: string;
     /**
      * Percentage of the achievement completed.
      */

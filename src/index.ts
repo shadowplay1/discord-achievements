@@ -1,49 +1,35 @@
-export { Achievements, IManager } from './Achievements'
+export * from './Achievements'
 
-export { Achievement, CompletionPercentageUpdateType } from './classes/Achievement'
-export { AchievementsError } from './classes/AchievementsError'
+export * from './classes/Achievement'
+export * from './classes/AchievementsError'
 
-export { Emitter } from './classes/util/Emitter'
-export { Logger, ILoggerOptions } from './classes/util/Logger'
+export * from './classes/util/Emitter'
+export * from './classes/util/Logger'
 
-export { Completions } from './classes/Completions.achievement'
-export { Progresses } from './classes/Progresses.achievement'
+export * from './classes/Completions.achievement'
+export * from './classes/Progresses.achievement'
 
-export { DatabaseManager } from './managers/DatabaseManager'
-export { UtilsManager } from './managers/UtilsManager'
+export * from './managers/DatabaseManager'
+export * from './managers/UtilsManager'
 
-export { isObject } from './structures/functions/isObject.function'
+export * from './structures/functions/isObject.function'
 
-export { defaultModuleConfig } from './structures/defaultModuleConfig.constant'
-export { errors } from './structures/errors.constant'
+export * from './structures/defaultModuleConfig.constant'
+export * from './structures/errors.constant'
 
-export { variables } from './structures/variables.constant'
+export * from './structures/variables.constant'
 export { variables as constants } from './structures/variables.constant'
 
-export { ErrorCodes } from './structures/ErrorCodes'
+export * from './structures/ErrorCodes'
 
-export { If } from './types/misc/If.type'
-export { AssignPartialProperty } from './types/misc/AssignPartialProperty.type'
+export * from './types/misc/If.type'
+export * from './types/misc/AssignPartialProperty.type'
 
-export { CustomAchievementData } from './types/customAchievementData.type'
-export { ILoggerColors } from './types/colors.interface'
+export * from './types/customAchievementData.type'
+export * from './types/colors.interface'
 
-export {
-    IAchievement, AchievementType,
-    IAchievementRequirement, IBaseProgression,
-    ICompletion, ICompletionEvent,
-    IProgression, IAdditionalInfo
-} from './types/achievement.interface'
+export * from './types/achievement.interface'
+export * from './types/events.interface'
 
-export { IAchievementsEvents, AchievementsEvents } from './types/events.interface'
-
-export {
-    DatabaseType, IAchievementsOptions,
-    IAchievementsPlugins, IBaseAchievementsOptions,
-    ICheckerOptions, IJSONDatabaseOptions
-} from './types/options.interface'
-
-export {
-    IBaseState, TypeState,
-    StatusCode
-} from './types/status.interface'
+export * from './types/options.interface'
+export * from './types/status.interface'

@@ -1,11 +1,6 @@
-export type If<T extends boolean,
-    IfTrue,
-    IfFalse = null
-> = T extends true ? IfTrue : IfFalse
-
-
+export declare type If<T extends boolean, IfTrue, IfFalse = null> = T extends true ? IfTrue : IfFalse;
 /**
- * @typedef {boolean} If<T,IfTrue,IfFalse> Returns the specified types based on a condition.
+ * @typedef {boolean} If Returns the specified types based on a condition.
  *
  * Type parameters:
  *

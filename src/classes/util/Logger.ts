@@ -2,9 +2,9 @@ import { ILoggerColors } from '../../types/colors.interface'
 
 
 /**
-* Achievements logger class.
-* @private
-*/
+ * Achievements logger class.
+ * @private
+ */
 export class Logger {
     public options?: ILoggerOptions
     public colors: ILoggerColors

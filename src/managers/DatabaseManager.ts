@@ -1,7 +1,6 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 
-import QuickMongo from 'quick-mongo-super'
-import { DatabaseProperties } from 'quick-mongo-super/typings/interfaces/QuickMongo'
+import { Mongo, DatabaseProperties } from 'quick-mongo-super/MongoItems'
 
 import { Achievements } from '../Achievements'
 import { AchievementsError } from '../classes/AchievementsError'
@@ -12,13 +11,12 @@ import { isObject } from '../structures/functions/isObject.function'
 
 import { DatabaseType, IAchievementsOptions } from '../types/options.interface'
 
-
 /**
  * Database manager class.
  */
 export class DatabaseManager {
     public options: IAchievementsOptions<any>
-    private mongo: QuickMongo
+    private mongo: Mongo<string, any>
 
     /**
      * Database manager.
@@ -34,7 +32,7 @@ export class DatabaseManager {
 
         /**
          * Database connection.
-         * @type {QuickMongo}
+         * @type {Mongo}
          * @private
          */
         this.mongo = achievements.mongo
@@ -79,7 +77,7 @@ export class DatabaseManager {
             return database
         }
 
-        const database = this.mongo.all<P>()
+        const database = this.mongo.all()
         return database
     }
 
@@ -177,7 +175,7 @@ export class DatabaseManager {
             return database
         }
 
-        const result = await this.mongo.set<T>(key, value)
+        const result = await this.mongo.set<any>(key, value)
         return result
     }
 
@@ -491,7 +489,7 @@ export class DatabaseManager {
             return updated
         }
 
-        const updated = await this.mongo.push<T>(key, value)
+        const updated = await this.mongo.push<any>(key, value)
         return updated
     }
 
@@ -613,7 +611,7 @@ export class DatabaseManager {
             return updated
         }
 
-        const updated = await this.mongo.pull<T>(key, index, newValue)
+        const updated = await this.mongo.pull<any>(key, index, newValue)
         return updated
     }
 }

@@ -5,7 +5,6 @@ const emitter = new EventEmitter({
     captureRejections: true
 })
 
-
 /**
  * Achievements event emitter class.
  */
@@ -16,8 +15,8 @@ export class Emitter {
      * @param {string} event Event name.
      * @param {Function} listener Callback function.
      */
-    on<T extends keyof IAchievementsEvents>(event: T, listener: (...args: IAchievementsEvents[T][]) => any): Emitter {
-        emitter.on(event as T, listener)
+    on<T extends keyof IAchievementsEvents>(event: T, listener: (...args: IAchievementsEvents[T]) => any): Emitter {
+        emitter.on(event as T, listener as any)
         return this
     }
 
@@ -26,8 +25,8 @@ export class Emitter {
      * @param {string} event Event name.
      * @param {Function} listener Callback function.
      */
-    once<T extends keyof IAchievementsEvents>(event: T, listener: (...args: IAchievementsEvents[T][]) => any): Emitter {
-        emitter.once(event as T, listener)
+    once<T extends keyof IAchievementsEvents>(event: T, listener: (...args: IAchievementsEvents[T]) => any): Emitter {
+        emitter.once(event as T, listener as any)
         return this
     }
 
@@ -36,7 +35,7 @@ export class Emitter {
      * @param {string} event Event name.
      * @param {any[]} args Parameters to pass in the event.
      */
-    emit<T extends keyof IAchievementsEvents>(event: T, ...args: IAchievementsEvents[T][]): boolean {
+    emit<T extends keyof IAchievementsEvents>(event: T, ...args: IAchievementsEvents[T]): boolean {
         return emitter.emit(event as T, ...args)
     }
 }

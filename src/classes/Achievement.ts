@@ -1,5 +1,5 @@
 import { Guild, GuildMember, TextChannel, User } from 'discord.js'
-import { DatabaseProperties } from 'quick-mongo-super/typings/interfaces/QuickMongo'
+import { IDatabaseProperties } from 'quick-mongo-super/MongoItems'
 
 import { Achievements } from '../Achievements'
 
@@ -275,7 +275,7 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
      * If true, percent of the guild members why completed the achievement will be updated.
      * @returns {Promise<DatabaseProperties<Required<IAchievement<T>>>>}
      */
-    public async update(updateCompletionPercent = false): Promise<DatabaseProperties<Required<IAchievement<T>>>> {
+    public async update(updateCompletionPercent = false): Promise<IDatabaseProperties<Required<IAchievement<T>>>> {
         const achievements = await this.achievements.all(this.guildID)
         const achievementIndex = achievements.findIndex(a => a.id == this.id)
 
@@ -308,10 +308,15 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
      */
     public async updateGuildCompletionPercentage(
         type?: CompletionPercentageUpdateType
-    ): Promise<DatabaseProperties<Required<IAchievement<T>>>> {
+    ): Promise<IDatabaseProperties<Required<IAchievement<T>>>> {
         const guildToChange = this.achievements.client.guilds.cache.get(this.guildID) as Guild
-        const operation = type ? type as any == CompletionPercentageUpdateType.MEMBER_ADD ? - 1 : + 1 : + 0
-        // console.log({ operation })
+
+        const operation = type
+            ? type as any == CompletionPercentageUpdateType.MEMBER_ADD
+                ? - 1
+                : + 1
+            : + 0
+
         this.completionPercentage = parseInt(
             (
                 this.completions.length /
@@ -320,13 +325,7 @@ export class Achievement<T extends object = any> implements IAchievement<T> {
             ).toFixed(2)
         )
 
-        // console.log((
-        //     this.completions.length /
-        //     (guildToChange.memberCount - guildToChange.members.cache.filter(m => m.user.bot).size + operation)
-        //     * 100
-        // ).toFixed(2))//this.completionPercentage)
         const result = await this.update()
-        //console.log(result)//.completionPercentage)
         return result
     }
 

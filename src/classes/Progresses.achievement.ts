@@ -1,11 +1,14 @@
 import { GuildMember } from 'discord.js'
+
 import { DatabaseManager } from '../managers/DatabaseManager'
+
 import { ErrorCodes } from '../structures/ErrorCodes'
 import { errors } from '../structures/errors.constant'
+
 import { IProgression } from '../types/achievement.interface'
+
 import { Achievement } from './Achievement'
 import { AchievementsError } from './AchievementsError'
-
 
 /**
  * Achievement progressions manager class.

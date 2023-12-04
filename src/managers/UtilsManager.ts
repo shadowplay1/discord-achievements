@@ -85,7 +85,6 @@ export class UtilsManager {
             )
 
             try {
-
                 // eslint-disable-next-line
                 const optionsObject = require(`${dirName}/achievements.config.${fileExtension}`)
 
